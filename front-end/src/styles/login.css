@@ -3,20 +3,20 @@ body {
 }
 
 .container-login {
+  align-items: center;
   background-color: var(--background-color);
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 1rem;
   padding: 10px;
   width: 400px;
-  gap: 1rem;
-  border-radius: 5px;
 }
 
 .div-login {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 10px;
 }
 
