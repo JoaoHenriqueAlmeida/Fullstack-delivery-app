@@ -1,14 +1,11 @@
 import React from 'react';
 import './App.css';
-import rockGlass from './images/rockGlass.svg';
+import Switch from './components/Switch';
 
 function App() {
   return (
     <div className="App">
-      <span className="logo">CETABOM ENTREGAS!</span>
-      <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
-        Glass
-      </object>
+      <Switch />
     </div>
   );
 }

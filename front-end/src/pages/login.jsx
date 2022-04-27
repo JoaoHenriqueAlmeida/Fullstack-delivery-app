@@ -1,20 +1,21 @@
 import React from 'react';
 
-function App() {
+function Login() {
   return (
     <div>
       <span className="logo">CETABOM ENTREGAS!</span>
 
-      <label htmlFor=''> Login
-        <input type="text" placeholder='email@trybeer.com.br'></input>
+      <label htmlFor="email">
+        Login
+        <input id="email" type="text" placeholder="email@trybeer.com.br" />
       </label>
 
-      <label htmlFor=''> Senha
-        <input type="password" placeholder='*******'></input>
+      <label htmlFor="password">
+        Senha
+        <input id="password" type="password" placeholder="*******" />
       </label>
-      
     </div>
   );
 }
 
-export default App;
+export default Login;
