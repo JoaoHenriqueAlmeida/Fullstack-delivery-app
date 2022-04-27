@@ -34,6 +34,7 @@ function Login() {
         </button>
         <button
           data-testid="common_login__button-register"
+          className="button-register"
           type="button"
         >
           Ainda nao tenho conta
