@@ -1,9 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   const Products = sequelize.define('products', {
     id: {
-      allowNull: false,
       autoIncrement: true,
       primaryKey: true,
+      type: DataTypes.INTEGER,
     },
     name: {
       type: DataTypes.STRING({ length: 100 }),
@@ -20,12 +20,13 @@ module.exports = (sequelize, DataTypes) => {
   },
   {
     tableName: 'products',
-    timestamps: false
+    timestamps: false,
+    underscored: true,
   });
 
-  Products.associate = (models) => {
-    Products.hasMany(models.SalesProducts, {foreingKey: 'product_id', as: 'product_sales'});
-  };
+  // Products.associate = (models) => {
+  //   Products.hasMany(models.SalesProducts, {foreignKey: 'product_id', as: 'product_sales'});
+  // };
 
   return Products;
 };

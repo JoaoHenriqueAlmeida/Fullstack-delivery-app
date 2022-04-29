@@ -27,13 +27,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       tableName: "users",
-      timestamps: false
+      timestamps: false,
     }    
   );
 
   Users.associate = (models) => {
-    Users.hasMany(models.Sales, {foreingKey: 'user_id', as: 'user_sales'});
-    Users.hasMany(models.Sales, {foreingKey: 'seller_id', as: 'user_seller'});
+    // Users.hasMany(models.Sales, {foreignKey: 'user_id', as: 'user_sales'});
+    Users.hasMany(models.Sales, {foreignKey: 'seller_id', as: 'user_seller'});
   };
   return Users;
 }

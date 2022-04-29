@@ -1,18 +1,20 @@
 module.exports = (sequelize, DataTypes) => {
-  const Sales = sequelize.define('sales', {
+  const Sales = sequelize.define('Sales', {
     id: {
-      allowNull: false,
       autoIncrement: true,
+      allowNull: false,
       primaryKey: true,
       type: DataTypes.INTEGER
     },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      // foreignKey: true,
     },
     seller_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      foreignKey: true,
     },
     total_price: {
       type: DataTypes.DECIMAL(9,2),
@@ -37,12 +39,14 @@ module.exports = (sequelize, DataTypes) => {
   },
   {
     tableName: 'sales',
-    timestamps: false
+    timestamps: false,
+    
   });
 
   Sales.associate = (models) => {
-    Sales.belongsTo(models.Users, {foreingKey: 'user_id', as: 'user_sales'});
-    Sales.belongsTo(models.Users, {foreingKey: 'seller_id', as: 'user_seller'});
+    // Sales.hasMany(models.SalesProducts, {foreignKey: 'sale_id', as: 'sale_products'});
+    // Sales.belongsTo(models.Users, {foreignKey: 'user_id', as: 'user_sales'});
+    Sales.belongsTo(models.Users, {foreignKey: 'sellerId', as: 'user_seller'});
   };
 
   return Sales;
