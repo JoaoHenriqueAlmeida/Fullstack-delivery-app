@@ -4,7 +4,7 @@ import '../styles/login.css';
 function Login() {
   return (
     <div className="div-login">
-      <h1 className="logo">CETABOM ENTREGAS!</h1>
+      <h1 className="logo">CETABOM ENTREGAS!!</h1>
 
       <div className="container-login">
         <label htmlFor="email">
