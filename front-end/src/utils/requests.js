@@ -1,10 +1,12 @@
+require('dotenv').config();
+
 const requestUser = (email, password) => {
   const options = {
-    method: 'POST',
+    method: 'GET',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
   };
-  fetch('https://login.com/validate', options)
+  fetch(`http://localhost:${process.env.REACT_APP_BACKENDPORT || '3000'}/login/validate`, options)
     .then((response) => response.json())
     .then((data) => data);
 };
