@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { MyContext } from '../context/Provider';
 import '../styles/login.css';
-import requestUser from '../utils/requests';
+import { requestUser } from '../utils/requests';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -10,6 +10,7 @@ function Login() {
   const [error, setError] = useState('');
   const [logged, setLogged] = useState(false);
   const [disabled, setDisabled] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const regex = (/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -66,7 +67,7 @@ function Login() {
           />
         </label>
         <button
-          data-testid="common_login__element-invalid-email"
+          data-testid="common_login__button-login"
           className="button-login"
           type="button"
           disabled={ disabled }
@@ -79,6 +80,7 @@ function Login() {
           data-testid="common_login__button-register"
           className="button-register"
           type="button"
+          onClick={ (() => navigate('/register', { replace: true })) }
         >
           Ainda nao tenho conta
 
