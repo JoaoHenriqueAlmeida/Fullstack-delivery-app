@@ -4,7 +4,7 @@ const requestUser = (email, password) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
   };
-  fetch(`http://localhost:${process.env.REACT_APP_BACKENDPORT || '3000'}/login`, options)
+  fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3000'}/login`, options)
     .then((response) => response.json())
     .then((data) => data);
 };
@@ -15,7 +15,7 @@ const createUser = (name, email, password) => {
     header: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, password, email }),
   };
-  fetch(`http://localhost:${process.env.REACT_APP_BACKENDPORT || '3000'}/register`, options)
+  fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3000'}/register`, options)
     .then((response) => response.json())
     .then((data) => data);
 };
