@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      // foreignKey: true,
+      foreignKey: true,
     },
     seller_id: {
       type: DataTypes.INTEGER,
@@ -44,9 +44,9 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Sales.associate = (models) => {
-    // Sales.hasMany(models.SalesProducts, {foreignKey: 'sale_id', as: 'sale_products'});
-    // Sales.belongsTo(models.Users, {foreignKey: 'user_id', as: 'user_sales'});
-    Sales.belongsTo(models.Users, {foreignKey: 'sellerId', as: 'user_seller'});
+    Sales.hasMany(models.SalesProducts, {foreignKey: 'sale_id', as: 'sale_products'});
+    Sales.belongsTo(models.Users, {foreignKey: 'user_id', as: 'user_sales'});
+    Sales.belongsTo(models.Users, {foreignKey: 'sellerd', as: 'user_seller'});
   };
 
   return Sales;
