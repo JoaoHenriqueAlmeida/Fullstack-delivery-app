@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const requestUser = (email, password) => {
   const options = {
     method: 'GET',
