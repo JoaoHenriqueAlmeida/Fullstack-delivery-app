@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { MyContext } from '../context/Provider';
 import '../styles/login.css';
@@ -9,32 +9,34 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [logged, setLogged] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
-  const {
-    setUserEmail,
-    setUserPassword,
-  } = useContext(MyContext);
-
-  const validateValues = async () => {
+  useEffect(() => {
     const regex = (/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
     const emailValidation = regex.test(email);
 
     const SIX = 6;
     const passwordValidation = password.length >= SIX;
 
-    if (!emailValidation) setError('Email inválido.');
-    if (!passwordValidation) setError('Senha inválida ou muito curta.');
-    if (emailValidation && passwordValidation) {
-      setError('');
-      try {
-        const user = await requestUser(email, password);
-        if (!user) throw new Error('Usuário não encontrado');
-        setUserEmail(email);
-        setUserPassword(password);
-        setLogged(true);
-      } catch (err) {
-        setError('Usuário inválido');
-      }
+    if (emailValidation && passwordValidation) setDisabled(false);
+    if (!emailValidation || !passwordValidation) setDisabled(true);
+  }, [email, password]);
+
+  const {
+    setUserEmail,
+    setUserPassword,
+  } = useContext(MyContext);
+
+  const validateUser = async () => {
+    setError('');
+    try {
+      const user = await requestUser(email, password);
+      if (!user) throw new Error('Usuário não encontrado');
+      setUserEmail(email);
+      setUserPassword(password);
+      setLogged(true);
+    } catch (err) {
+      setError('Usuário inválido');
     }
   };
 
@@ -67,7 +69,8 @@ function Login() {
           data-testid="common_login__element-invalid-email"
           className="button-login"
           type="button"
-          onClick={ (() => validateValues()) }
+          disabled={ disabled }
+          onClick={ (() => validateUser()) }
         >
           Login
 
