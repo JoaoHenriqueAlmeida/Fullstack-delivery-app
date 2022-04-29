@@ -25,7 +25,7 @@ function Login() {
           />
         </label>
         <button
-          data-testid="common_login__element-invalid-email"
+          data-testid="common_login__button-login"
           className="button-login"
           type="button"
         >
