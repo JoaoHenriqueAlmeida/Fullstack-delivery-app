@@ -18,7 +18,7 @@ const login = async (email, password) => {
   if (!result) return null;
 
   const token = await generateToken({ email });
-  
+
   return {
     name: result.name,
     email: result.email,
@@ -45,7 +45,6 @@ const auth = async (token) => {
   if (!findUser) return null;
   return findUser;
 };
-
 
 const findUsers = async () => genericService.read(Users);
 
