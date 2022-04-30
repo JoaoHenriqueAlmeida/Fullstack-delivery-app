@@ -18,7 +18,7 @@ const genericService = {
   update: async (model, id, data) => {
     const result = await model.findOne({ where: { id } });
     if (!result) return null;
-    result.set(data);
+    result.set({ ...data });
     await result.save();
     return result;
   },
@@ -31,4 +31,4 @@ const genericService = {
   },
 };
 
-export default genericService;
+module.exports = genericService;

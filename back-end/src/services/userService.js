@@ -10,7 +10,15 @@ const login = async (email, password) => {
   return result;
 };
 
-const newUser = async (data) => genericService.create(Users, data);
+const newUser = async (data) => {
+  const user = await genericService.create(Users, data);
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+  };
+};
 
 const findUsers = async () => genericService.read(Users);
 
