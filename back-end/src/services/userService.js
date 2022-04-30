@@ -1,4 +1,6 @@
 const md5 = require('md5');
+const readFile = require('fs').promises;
+const jwt = require('jsonwebtoken');
 const { Users } = require('../database/models');
 const genericService = require('./basicService');
 
@@ -20,6 +22,15 @@ const newUser = async (data) => {
   };
 };
 
+const auth = async (token) => {
+  const secret = await readFile('jwt.evaluation.key', 'utf8');
+  const decoded = jwt.verify(token, secret);
+  if (!decoded) return null;
+  const findUser = await Users.findOne({ where: { email: decoded.data.email } });
+  if (!findUser) return null;
+  return findUser;
+};
+
 const findUsers = async () => genericService.read(Users);
 
 const findUser = async (id) => genericService.readOne(Users, id);
@@ -29,10 +40,11 @@ const updateUser = async (id, data) => genericService.update(Users, id, data);
 const deleteUser = async (id) => genericService.delete(Users, id);
 
 module.exports = {
-  login,
-  newUser,
+  auth,
+  deleteUser,
   findUsers,
   findUser,
+  login,
+  newUser,
   updateUser,
-  deleteUser,
 };
