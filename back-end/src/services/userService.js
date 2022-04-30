@@ -4,12 +4,27 @@ const jwt = require('jsonwebtoken');
 const { Users } = require('../database/models');
 const genericService = require('./basicService');
 
+const generateToken = async (data) => {
+  const secret = await readFile('jwt.evaluation.key', 'utf8');
+  const token = jwt.sign({ data }, secret, { expiresIn: '1d' });
+  return token;
+};
+
 const login = async (email, password) => {
   const criptedPassword = md5(password);
 
   const result = await Users.findOne({ where: { email, password: criptedPassword } });
 
-  return result;
+  if (!result) return null;
+
+  const token = await generateToken({ email });
+  
+  return {
+    name: result.name,
+    email: result.email,
+    role: result.role,
+    token,
+  };
 };
 
 const newUser = async (data) => {
@@ -31,11 +46,6 @@ const auth = async (token) => {
   return findUser;
 };
 
-const genereteToken = async (data) => {
-  const secret = await readFile('jwt.evaluation.key', 'utf8');
-  const token = jwt.sign({ data }, secret, { expiresIn: '1d' });
-  return token;
-};
 
 const findUsers = async () => genericService.read(Users);
 
@@ -50,7 +60,7 @@ module.exports = {
   deleteUser,
   findUsers,
   findUser,
-  genereteToken,
+  generateToken,
   login,
   newUser,
   updateUser,
