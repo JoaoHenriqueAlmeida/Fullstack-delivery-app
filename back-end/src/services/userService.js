@@ -31,6 +31,12 @@ const auth = async (token) => {
   return findUser;
 };
 
+const genereteToken = async (data) => {
+  const secret = await readFile('jwt.evaluation.key', 'utf8');
+  const token = jwt.sign({ data }, secret, { expiresIn: '1d' });
+  return token;
+};
+
 const findUsers = async () => genericService.read(Users);
 
 const findUser = async (id) => genericService.readOne(Users, id);
@@ -44,6 +50,7 @@ module.exports = {
   deleteUser,
   findUsers,
   findUser,
+  genereteToken,
   login,
   newUser,
   updateUser,
