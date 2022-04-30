@@ -8,6 +8,6 @@ module.exports = async (req, res, next) => {
     req.authUser = user.id;
     next();
   } catch (e) {
-    return res.status(401).json({ message: 'Token inválido' });
+    return res.status(401).json({ message: e.message });
   }
 };
