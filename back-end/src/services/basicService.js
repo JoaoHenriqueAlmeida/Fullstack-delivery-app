@@ -16,14 +16,17 @@ const genericService = {
   },
 
   update: async (model, id, data) => {
-    const result = await model.update(data, { where: { id } });
+    const result = await model.findOne({ where: { id } });
     if (!result) return null;
+    result.set(data);
+    await result.save();
     return result;
   },
 
   delete: async (model, id) => {
-    const result = await model.destroy({ where: { id } });
+    const result = await model.findOne({ where: { id } });
     if (!result) return null;
+    await result.destroy();
     return result;
   },
 };
