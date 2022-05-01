@@ -1,5 +1,5 @@
 const md5 = require('md5');
-const readFile = require('fs').promises;
+const { readFile } = require('fs/promises');
 const jwt = require('jsonwebtoken');
 const { Users } = require('../database/models');
 const genericService = require('./basicService');
@@ -28,7 +28,10 @@ const login = async (email, password) => {
 };
 
 const newUser = async (data) => {
-  const user = await genericService.create(Users, data);
+  const criptedPassword = md5(data.password);
+
+  const user = await genericService.create(Users, { ...data, password: criptedPassword });
+  
   return {
     id: user.id,
     name: user.name,
