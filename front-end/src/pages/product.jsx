@@ -8,11 +8,11 @@ import { MyContext } from '../context/Provider';
 function Product() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  const { username } = useContext(MyContext);
+  const { username, userPassword, userEmail } = useContext(MyContext);
 
   useEffect(() => {
     const fetch = async () => {
-      const results = await requestProducts();
+      const results = await requestProducts(username, userPassword, userEmail);
       if (results) setProducts(results);
     };
     fetch();

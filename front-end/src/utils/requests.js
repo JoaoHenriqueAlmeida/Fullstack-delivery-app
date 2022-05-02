@@ -22,10 +22,15 @@ const createUser = async (name, email, password) => {
     .then((data) => data);
 };
 
-const requestProducts = () => {
+const requestProducts = async (name, email, password) => {
+  const signUp = await createUser(name, email, password);
+  const signIn = await requestUser(email, password);
   const options = {
     method: 'GET',
-    headers: { 'Content-Type': contentType },
+    headers: {
+      'Content-Type': contentType,
+    },
+    Authorization: signUp !== undefined ? `${signUp.token}` : `${signIn.token}`,
   };
   fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/products`, options)
     .then((response) => response.json())

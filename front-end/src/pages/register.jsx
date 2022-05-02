@@ -34,6 +34,7 @@ function Register() {
     const newUser = createUser(name, email, password);
     if (newUser) {
       setUsername(newUser.name);
+      localStorage.setItem('authorization', JSON.stringify(newUser.token));
       navigate('/customer/products', { replace: true });
     }
   };

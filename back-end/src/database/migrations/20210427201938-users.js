@@ -21,6 +21,7 @@ module.exports = {
       },
       role: {
         type: Sequelize.STRING,
+        default: 'customer',
       }
     });
   },
