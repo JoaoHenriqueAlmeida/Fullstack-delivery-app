@@ -29,18 +29,19 @@ function Login() {
     setUsername,
   } = useContext(MyContext);
 
-  const validateUser = async () => {
+  const validateUser = () => {
     setError('');
-    try {
-      const user = await requestUser(email, password);
-      if (!user) throw new Error('Usuário não encontrado');
-      setUserEmail(email);
-      setUserPassword(password);
-      setLogged(true);
-      setUsername(user.name);
-    } catch (err) {
-      setError('Usuário inválido');
-    }
+    // try {
+    const user = requestUser(email, password);
+    console.log(user);
+    if (!user) setError('Usuário inválido');
+    setUserEmail(email);
+    setUserPassword(password);
+    setLogged(true);
+    setUsername(user.name);
+    // } catch (err) {
+    // setError('Usuário inválido');
+    // }
   };
 
   if (logged) return <Navigate to="/customer/products" />;
@@ -55,7 +56,7 @@ function Login() {
             data-testid="common_login__input-email"
             type="text"
             placeholder="email@trybeer.com.br"
-            onChange={ (({ target }) => setEmail(target.value)) }
+            onChange={ ({ target }) => setEmail(target.value) }
           />
         </label>
 
@@ -65,7 +66,7 @@ function Login() {
             data-testid="common_login__input-password"
             type="password"
             placeholder="*******"
-            onChange={ (({ target }) => setPassword(target.value)) }
+            onChange={ ({ target }) => setPassword(target.value) }
           />
         </label>
         <button
@@ -73,7 +74,7 @@ function Login() {
           className="button-login"
           type="button"
           disabled={ disabled }
-          onClick={ (() => validateUser()) }
+          onClick={ () => validateUser() }
         >
           Login
 
@@ -82,7 +83,7 @@ function Login() {
           data-testid="common_login__button-register"
           className="button-register"
           type="button"
-          onClick={ (() => navigate('/register', { replace: true })) }
+          onClick={ () => navigate('/register', { replace: true }) }
         >
           Ainda nao tenho conta
 
