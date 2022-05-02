@@ -26,6 +26,7 @@ function Login() {
   const {
     setUserEmail,
     setUserPassword,
+    setUsername,
   } = useContext(MyContext);
 
   const validateUser = async () => {
@@ -36,12 +37,13 @@ function Login() {
       setUserEmail(email);
       setUserPassword(password);
       setLogged(true);
+      setUsername(user.name);
     } catch (err) {
       setError('Usuário inválido');
     }
   };
 
-  if (logged) return <Navigate to="/products" />;
+  if (logged) return <Navigate to="/customer/products" />;
   return (
     <div className="div-login">
       <h1 className="logo">CETABOM ENTREGAS!</h1>

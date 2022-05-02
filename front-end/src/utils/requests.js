@@ -1,10 +1,12 @@
+const JSON = 'application/json';
+
 const requestUser = (email, password) => {
   const options = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': JSON },
     body: JSON.stringify({ email, password }),
   };
-  fetch(`http://localhost:${process.env.REACT_APP_BACKENDPORT || '3000'}/login`, options)
+  fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/login`, options)
     .then((response) => response.json())
     .then((data) => data);
 };
@@ -12,10 +14,20 @@ const requestUser = (email, password) => {
 const createUser = (name, email, password) => {
   const options = {
     method: 'POST',
-    header: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': JSON },
     body: JSON.stringify({ name, password, email }),
   };
-  fetch(`http://localhost:${process.env.REACT_APP_BACKENDPORT || '3000'}/register`, options)
+  fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/register`, options)
+    .then((response) => response.json())
+    .then((data) => data);
+};
+
+const requestProducts = () => {
+  const options = {
+    method: 'GET',
+    headers: { 'Content-Type': JSON },
+  };
+  fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/products`, options)
     .then((response) => response.json())
     .then((data) => data);
 };
@@ -23,4 +35,5 @@ const createUser = (name, email, password) => {
 export {
   requestUser,
   createUser,
+  requestProducts,
 };
