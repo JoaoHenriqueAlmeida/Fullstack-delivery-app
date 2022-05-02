@@ -28,16 +28,13 @@ function Register() {
     }
   }, [name, email, password]);
 
-  const submitValues = async (event) => {
+  const submitValues = (event) => {
     event.preventDefault();
     setError('');
-    try {
-      const newUser = await createUser(name, email, password);
-      if (!newUser) throw new Error('Bad Request');
+    const newUser = createUser(name, email, password);
+    if (newUser) {
       setUsername(newUser.name);
-      navigate('/customer/products');
-    } catch {
-      setError('Dados inválidos');
+      navigate('/customer/products', { replace: true });
     }
   };
 
