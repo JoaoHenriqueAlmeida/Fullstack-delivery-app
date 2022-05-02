@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import { requestProducts } from '../utils/requests';
+import { MyContext } from '../context/Provider';
 
 function Product() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  const { username } = useContext(MyContext);
 
   useEffect(() => {
     const fetch = async () => {
@@ -18,7 +20,7 @@ function Product() {
 
   return (
     <>
-      <Navbar username="User" />
+      <Navbar username={ username } />
       <h1>Produtos</h1>
       { products.map((e) => ProductCard(e)) }
       <button

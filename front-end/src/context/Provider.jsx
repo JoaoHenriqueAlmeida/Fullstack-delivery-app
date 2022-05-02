@@ -6,11 +6,14 @@ export const MyContext = createContext();
 export function Provider({ children }) {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
+  const [username, setUsername] = useState('');
   const context = {
     userEmail,
     setUserEmail,
     userPassword,
     setUserPassword,
+    username,
+    setUsername,
   };
 
   return (

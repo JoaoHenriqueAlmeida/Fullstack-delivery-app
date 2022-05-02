@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createUser } from '../utils/requests';
+import { MyContext } from '../context/Provider';
 
 const SIX = 6;
 const TWELVE = 12;
@@ -10,6 +12,8 @@ function Register() {
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
   const [error, setError] = useState('');
+  const { setUsername } = useContext(MyContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const regex = (/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -30,6 +34,8 @@ function Register() {
     try {
       const newUser = await createUser(name, email, password);
       if (!newUser) throw new Error('Bad Request');
+      setUsername(newUser.name);
+      navigate('/customer/products');
     } catch {
       setError('Dados inválidos');
     }
