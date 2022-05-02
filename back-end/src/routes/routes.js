@@ -11,9 +11,9 @@ router.use(cors());
 router.post('/login', userController.login);
 router.post('/register', userController.register);
 
-router.use(validateAuthField);
-router.use(jwtAuth);
-router.get('/products', productsController.read);
-router.get('/products/:id', productsController.readOne);
+// router.use(validateAuthField);
+// router.use(jwtAuth);
+router.get('/products', validateAuthField, jwtAuth, productsController.read);
+router.get('/products/:id', validateAuthField, jwtAuth, productsController.readOne);
 
 module.exports = router;
