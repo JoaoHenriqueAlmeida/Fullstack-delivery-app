@@ -12,6 +12,6 @@ router.post('/register', userController.register);
 // router.use(validateAuthField);
 // router.use(jwtAuth);
 router.get('/products', validateAuthField, jwtAuth, productsController.read);
-router.get('/products/:id',validateAuthField, jwtAuth, productsController.readOne);
+router.get('/products/:id', validateAuthField, jwtAuth, productsController.readOne);
 
 module.exports = router;
