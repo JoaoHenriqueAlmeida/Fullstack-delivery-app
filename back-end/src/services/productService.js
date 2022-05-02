@@ -1,7 +1,12 @@
 const genericService = require('./basicService');
 const { Products } = require('../database/models');
 
-const createProduct = async (data) => genericService.create(Products, data);
+const createProduct = async (data) => {
+  const name = await Products.findOne({ where: { name: data.name } });
+  if (name) return { message: 'Produto já cadastrado' };
+  const newProduct = await genericService.create(Products, data);
+  return newProduct;
+};
 
 const editProduct = async (id, data) => genericService.update(Products, id, data);
 
