@@ -24,14 +24,15 @@ const createUser = async (name, email, password) => {
   return results;
 };
 
-const requestProducts = () => {
+const requestProducts = async () => {
   const options = {
     method: 'GET',
     headers: { 'Content-Type': contentType },
   };
-  fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/products`, options)
+  const results = await fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/products`, options)
     .then((response) => response.json())
     .then((data) => data);
+  return results;
 };
 
 export {
