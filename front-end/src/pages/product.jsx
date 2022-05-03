@@ -16,7 +16,7 @@ function Product() {
       if (results) setProducts(results);
     };
     fetch();
-  }, []);
+  }, [token]);
 
   return (
     <>
