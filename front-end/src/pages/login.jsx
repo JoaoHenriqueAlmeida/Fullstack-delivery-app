@@ -29,12 +29,12 @@ function Login() {
     setUsername,
   } = useContext(MyContext);
 
-  const validateUser = () => {
+  const validateUser = async () => {
     setError('');
     // try {
-    const user = requestUser(email, password);
+    const user = await requestUser(email, password);
     console.log(user);
-    if (!user) setError('Usuário inválido');
+    if (!user.token) return setError('Usuário inválido');
     setUserEmail(email);
     setUserPassword(password);
     setLogged(true);
@@ -89,7 +89,13 @@ function Login() {
 
         </button>
       </div>
-      <footer>{`${error}`}</footer>
+      <span
+        data-testid="common_login__element-invalid-email"
+        className="error-message"
+      >
+        {`${error}`}
+
+      </span>
     </div>
   );
 }

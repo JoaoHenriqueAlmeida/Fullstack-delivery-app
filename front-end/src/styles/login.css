@@ -46,3 +46,7 @@ body {
   background-color: var(--primary-color);
   color: var(--text-light);
 }
+
+.error-message {
+  color: rgb(255, 51, 51);
+}
