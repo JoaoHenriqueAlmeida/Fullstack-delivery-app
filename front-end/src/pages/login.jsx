@@ -42,7 +42,6 @@ function Login() {
     } else {
       setError('Usuário inválido');
     }
-
   };
 
   if (logged) return <Navigate to="/customer/products" />;
