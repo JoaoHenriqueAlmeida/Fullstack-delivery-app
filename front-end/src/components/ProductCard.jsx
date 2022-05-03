@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import QuantityController from './QuantityController';
+import '../styles/productCard.css';
 
 function ProductCard(props) {
   const {
@@ -11,7 +12,7 @@ function ProductCard(props) {
   } = props;
 
   return (
-    <div key={ id }>
+    <div className="card" key={ id }>
       <h3
         data-testid={ `customer_products__element-card-price-${id}` }
       >
