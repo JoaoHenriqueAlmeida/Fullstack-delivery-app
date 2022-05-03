@@ -81,7 +81,7 @@ function Login() {
           disabled={ disabled }
           onClick={ () => validateUser() }
         >
-          Login
+          LOGIN
 
         </button>
         <button
