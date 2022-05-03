@@ -11,6 +11,12 @@ function Product() {
   const { username, token } = useContext(MyContext);
 
   useEffect(() => {
+    if (!localStorage.getItem('cart')) {
+      localStorage.setItem('cart', JSON.stringify([]));
+    }
+  }, []);
+
+  useEffect(() => {
     const fetch = async () => {
       const results = await requestProducts(token);
       if (results) setProducts(results);
