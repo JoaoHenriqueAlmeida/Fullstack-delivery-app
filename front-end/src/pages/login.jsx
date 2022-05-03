@@ -89,7 +89,7 @@ function Login() {
       </div>
       <footer
         hidden={ error === '' }
-        date-testid="common_login__element-invalid-email"
+        data-testid="common_login__element-invalid-email"
       >
         {error}
       </footer>
