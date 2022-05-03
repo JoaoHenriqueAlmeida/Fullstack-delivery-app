@@ -6,13 +6,14 @@ const requestUser = async (email, password) => {
     headers: { 'Content-Type': contentType },
     body: JSON.stringify({ email, password }),
   };
-  const results = await fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/login`, options)
+  const user = fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/login`, options)
     .then((response) => response.json())
     .then((data) => data);
-  return results;
+
+  return user;
 };
 
-const createUser = async (name, email, password) => {
+const createUser = (name, email, password) => {
   const options = {
     method: 'POST',
     headers: { 'Content-Type': contentType },
