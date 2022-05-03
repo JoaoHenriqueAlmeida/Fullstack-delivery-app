@@ -87,7 +87,7 @@ function Login() {
 
         </button>
       </div>
-      <footer>{`${error}`}</footer>
+      <footer date-testid="common_login__element-invalid-email">{error}</footer>
     </div>
   );
 }
