@@ -1,14 +1,15 @@
 const contentType = 'application/json; charset=utf-8';
 
-const requestUser = (email, password) => {
+const requestUser = async (email, password) => {
   const options = {
     method: 'POST',
     headers: { 'Content-Type': contentType },
     body: JSON.stringify({ email, password }),
   };
-  fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/login`, options)
+  const results = await fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/login`, options)
     .then((response) => response.json())
     .then((data) => data);
+  return results;
 };
 
 const createUser = async (name, email, password) => {

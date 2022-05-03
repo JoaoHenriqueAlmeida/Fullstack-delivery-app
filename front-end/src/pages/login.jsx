@@ -29,19 +29,17 @@ function Login() {
     setUsername,
   } = useContext(MyContext);
 
-  const validateUser = () => {
+  const validateUser = async () => {
     setError('');
-    // try {
-    const user = requestUser(email, password);
-    console.log(user);
-    if (!user) setError('Usuário inválido');
-    setUserEmail(email);
-    setUserPassword(password);
-    setLogged(true);
-    setUsername(user.name);
-    // } catch (err) {
-    // setError('Usuário inválido');
-    // }
+    const user = await requestUser(email, password);
+    if (!user.message) {
+      setUserEmail(email);
+      setUserPassword(password);
+      setUsername(user.name);
+      setLogged(true);
+    } else {
+      setError('Usuário inválido');
+    }
   };
 
   if (logged) return <Navigate to="/customer/products" />;
