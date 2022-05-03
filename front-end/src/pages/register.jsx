@@ -28,13 +28,15 @@ function Register() {
     }
   }, [name, email, password]);
 
-  const submitValues = (event) => {
+  const submitValues = async (event) => {
     event.preventDefault();
     setError('');
-    const newUser = createUser(name, email, password);
+    const newUser = await createUser(name, email, password);
     if (newUser) {
       setUsername(newUser.name);
       navigate('/customer/products', { replace: true });
+    } else {
+      setError('Dados inválidos');
     }
   };
 

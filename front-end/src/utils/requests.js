@@ -18,9 +18,10 @@ const createUser = async (name, email, password) => {
     headers: { 'Content-Type': contentType },
     body: JSON.stringify({ name, password, email }),
   };
-  fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/register`, options)
+  const results = await fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/register`, options)
     .then((response) => response.json())
     .then((data) => data);
+  return results;
 };
 
 const requestProducts = () => {
