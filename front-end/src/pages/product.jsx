@@ -8,15 +8,15 @@ import { MyContext } from '../context/Provider';
 function Product() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  const { username } = useContext(MyContext);
+  const { username, token } = useContext(MyContext);
 
   useEffect(() => {
     const fetch = async () => {
-      const results = await requestProducts();
+      const results = await requestProducts(token);
       if (results) setProducts(results);
     };
     fetch();
-  }, []);
+  }, [token]);
 
   return (
     <>

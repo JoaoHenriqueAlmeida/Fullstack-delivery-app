@@ -1,6 +1,6 @@
 const contentType = 'application/json; charset=utf-8';
 
-const requestUser = (email, password) => {
+const requestUser = async (email, password) => {
   const options = {
     method: 'POST',
     headers: { 'Content-Type': contentType },
@@ -19,19 +19,24 @@ const createUser = (name, email, password) => {
     headers: { 'Content-Type': contentType },
     body: JSON.stringify({ name, password, email }),
   };
-  fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/register`, options)
+  const results = await fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/register`, options)
     .then((response) => response.json())
     .then((data) => data);
+  return results;
 };
 
-const requestProducts = () => {
+const requestProducts = async (token) => {
+  const reqHeaders = new Headers();
+  reqHeaders.append('Authorization', token);
+  reqHeaders.append('Content-Type', contentType);
   const options = {
     method: 'GET',
-    headers: { 'Content-Type': contentType },
+    headers: reqHeaders,
   };
-  fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/products`, options)
+  const results = await fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/products`, options)
     .then((response) => response.json())
     .then((data) => data);
+  return results;
 };
 
 export {

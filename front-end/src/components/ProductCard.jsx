@@ -15,7 +15,7 @@ function ProductCard(props) {
       <h3
         data-testid={ `customer_products__element-card-price-${id}` }
       >
-        {`R$ ${price.toFixed(2).replace('.', ',')}`}
+        {`R$ ${price.replace('.', ',')}`}
       </h3>
       <img
         data-testid={ `customer_products__element-card-img-${id}` }
