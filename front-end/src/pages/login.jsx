@@ -89,7 +89,13 @@ function Login() {
 
         </button>
       </div>
-      <span data-testid="common_login__element-invalid-email">{`${error}`}</span>
+      <span
+        data-testid="common_login__element-invalid-email"
+        className="error-message"
+      >
+        {`${error}`}
+
+      </span>
     </div>
   );
 }
