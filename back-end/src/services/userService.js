@@ -50,7 +50,6 @@ const newUser = async (data) => {
 const auth = async (token) => {
   const secret = await readFile('jwt.evaluation.key', 'utf8');
   const decoded = jwt.verify(token, secret);
-  console.log(decoded.data.email)
   if (!decoded) throw new Error('Token expirado ou inválido');
   const findUser = await Users.findOne({ where: { email: decoded.data.email } });
   if (!findUser) return null;

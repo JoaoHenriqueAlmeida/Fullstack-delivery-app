@@ -14,7 +14,8 @@ const read = async (_req, res) => {
     const sales = await salesService.readSale();
     return res.status(200).json(sales);
   } catch (e) {
-    return res.status(400).json({ message: 'Não foi possível listar as vendas, sentimos muito D:' });
+    return res.status(400)
+      .json({ message: 'Não foi possível listar as vendas, sentimos muito D:' });
   }
 };
 
@@ -29,10 +30,9 @@ const readSaleByUserId = async (req, res) => {
     const sale = await salesService.readSaleByUser(req.params.id);
     return res.status(200).json(sale);
   } catch (e) {
-    return res.status(400).json({ message:e.message });
+    return res.status(400).json({ message: e.message });
   }
 };
-
 
 module.exports = {
   create,
