@@ -13,7 +13,7 @@ const requestUser = async (email, password) => {
   return user;
 };
 
-const createUser = (name, email, password) => {
+const createUser = async (name, email, password) => {
   const options = {
     method: 'POST',
     headers: { 'Content-Type': contentType },
