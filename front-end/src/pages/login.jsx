@@ -27,21 +27,22 @@ function Login() {
     setUserEmail,
     setUserPassword,
     setUsername,
+    setToken,
   } = useContext(MyContext);
 
-  const validateUser = () => {
+  const validateUser = async () => {
     setError('');
-    // try {
-    const user = requestUser(email, password);
-    console.log(user);
-    if (!user) setError('Usuário inválido');
-    setUserEmail(email);
-    setUserPassword(password);
-    setLogged(true);
-    setUsername(user.name);
-    // } catch (err) {
-    // setError('Usuário inválido');
-    // }
+    const user = await requestUser(email, password);
+    if (!user.message) {
+      setUserEmail(email);
+      setUserPassword(password);
+      setUsername(user.name);
+      setToken(user.token);
+      setLogged(true);
+    } else {
+      setError('Usuário inválido');
+    }
+
   };
 
   if (logged) return <Navigate to="/customer/products" />;
@@ -89,7 +90,12 @@ function Login() {
 
         </button>
       </div>
-      <footer>{`${error}`}</footer>
+      <footer
+        hidden={ error === '' }
+        data-testid="common_login__element-invalid-email"
+      >
+        {error}
+      </footer>
     </div>
   );
 }

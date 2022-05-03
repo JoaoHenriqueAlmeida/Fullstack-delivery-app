@@ -18,7 +18,7 @@ function Register() {
   useEffect(() => {
     const regex = (/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
     const emailValidation = regex.test(email);
-    const nameValidation = name.length < TWELVE;
+    const nameValidation = name.length >= TWELVE;
     const passwordValidation = password.length >= SIX;
 
     if (nameValidation && emailValidation && passwordValidation) {
@@ -28,14 +28,16 @@ function Register() {
     }
   }, [name, email, password]);
 
-  const submitValues = (event) => {
+  const submitValues = async (event) => {
     event.preventDefault();
     setError('');
-    const newUser = createUser(name, email, password);
+    const newUser = await createUser(name, email, password);
     if (newUser) {
       setUsername(newUser.name);
       localStorage.setItem('authorization', JSON.stringify(newUser.token));
       navigate('/customer/products', { replace: true });
+    } else {
+      setError('Dados inválidos');
     }
   };
 
