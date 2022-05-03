@@ -18,7 +18,7 @@ function Register() {
   useEffect(() => {
     const regex = (/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
     const emailValidation = regex.test(email);
-    const nameValidation = name.length < TWELVE;
+    const nameValidation = name.length >= TWELVE;
     const passwordValidation = password.length >= SIX;
 
     if (nameValidation && emailValidation && passwordValidation) {
