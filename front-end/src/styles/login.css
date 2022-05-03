@@ -1,5 +1,5 @@
 body {
-  background-color: white;
+  background-color: #e5e5e5;
 }
 
 .container-login {
@@ -11,7 +11,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  height: 370px;
+  height: 444px;
   padding: 20px;
   width: 425px;
 }
@@ -37,6 +37,7 @@ body {
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   display: block;
+  font-size: 24px;
   height: 50px;
   width: 370px;
 }
@@ -64,7 +65,7 @@ body {
   opacity: 0.5;
 }
 
-.button-login:active {
+.button-login:enabled:active {
   transform: translateY(-3px);
 }
 
