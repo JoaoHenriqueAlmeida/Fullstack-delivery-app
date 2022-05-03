@@ -32,10 +32,15 @@ function Register() {
     event.preventDefault();
     setError('');
     const newUser = await createUser(name, email, password);
-    if (newUser) {
+    if (!newUser.message) {
       console.log(newUser);
       setUsername(newUser.name);
       setToken(newUser.token);
+      const userToSave = JSON
+        .stringify({
+          name, email, role: newUser.role, token: newUser.token,
+        });
+      localStorage.setItem('user', userToSave);
       navigate('/customer/products', { replace: true });
     } else {
       setError('Dados inválidos');
@@ -90,7 +95,13 @@ function Register() {
           CADASTRAR
         </button>
       </fieldset>
-      <footer date-testid="common_register__element-invalid_register">{error}</footer>
+      <footer
+        hidden={ error === '' }
+        data-testid="common_register__element-invalid_register"
+      >
+        {error}
+
+      </footer>
     </form>
   );
 }
