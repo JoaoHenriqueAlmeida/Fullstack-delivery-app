@@ -5,16 +5,16 @@ const create = async (req, res) => {
     const sale = await salesService.createSale(req.body);
     return res.status(201).json(sale);
   } catch (e) {
-    return res.status(400).json({ message:'Não foi possível criar a venda, sentimos muito D:' });
+    return res.status(400).json({ message: 'Não foi possível criar a venda, sentimos muito D:' });
   }
-}
+};
 
-const read = async (req, res) => {
+const read = async (_req, res) => {
   try {
     const sales = await salesService.readSale();
     return res.status(200).json(sales);
   } catch (e) {
-    return res.status(400).json({ message:'Não foi possível listar as vendas, sentimos muito D:' });
+    return res.status(400).json({ message: 'Não foi possível listar as vendas, sentimos muito D:' });
   }
 };
 
