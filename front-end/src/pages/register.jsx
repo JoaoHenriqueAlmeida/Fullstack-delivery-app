@@ -97,7 +97,7 @@ function Register() {
       </fieldset>
       <footer
         hidden={ error === '' }
-        date-testid="common_register__element-invalid_register"
+        data-testid="common_register__element-invalid_register"
       >
         {error}
 
