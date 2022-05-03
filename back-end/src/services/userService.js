@@ -36,7 +36,7 @@ const newUser = async (data) => {
   
   const user = await genericService.create(Users, { ...data, password: criptedPassword });
 
-  const token = await generateToken({ data: data.email });
+  const token = await generateToken({ email: data.email });
   
   return {
     id: user.id,

@@ -12,7 +12,7 @@ function Register() {
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
   const [error, setError] = useState('');
-  const { setUsername } = useContext(MyContext);
+  const { setUsername, setToken } = useContext(MyContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,8 +33,9 @@ function Register() {
     setError('');
     const newUser = await createUser(name, email, password);
     if (newUser) {
+      console.log(newUser);
       setUsername(newUser.name);
-      localStorage.setItem('authorization', JSON.stringify(newUser.token));
+      setToken(newUser.token);
       navigate('/customer/products', { replace: true });
     } else {
       setError('Dados inválidos');
