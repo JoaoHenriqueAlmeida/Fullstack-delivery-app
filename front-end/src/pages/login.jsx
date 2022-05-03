@@ -34,7 +34,7 @@ function Login() {
     // try {
     const user = await requestUser(email, password);
     console.log(user);
-    if (!user) return setError('Usuário inválido');
+    if (!user.token) return setError('Usuário inválido');
     setUserEmail(email);
     setUserPassword(password);
     setLogged(true);
@@ -89,7 +89,7 @@ function Login() {
 
         </button>
       </div>
-      <footer data-testid="common_login__element-invalid-email">{`${error}`}</footer>
+      <span data-testid="common_login__element-invalid-email">{`${error}`}</span>
     </div>
   );
 }
