@@ -30,6 +30,10 @@ const login = async (email, password) => {
 const newUser = async (data) => {
   const criptedPassword = md5(data.password);
 
+  const existenceUser = await Users.findOne({ where: { email: data.email } });
+
+  if (existenceUser) throw new Error('Usuário já existe na base de dados');
+  
   const user = await genericService.create(Users, { ...data, password: criptedPassword });
 
   const token = await generateToken({ data: data.email });

@@ -11,8 +11,12 @@ const login = async (req, res) => {
 };
 
 const register = async (req, res) => {
-  const newUser = await userService.newUser(req.body);
-  return res.status(201).json(newUser);
+  try {
+    const newUser = await userService.newUser(req.body);
+    return res.status(201).json(newUser);
+  } catch (e) {
+    res.status(409).json({ message: e.message });
+  }
 };
 
 module.exports = {
