@@ -27,6 +27,7 @@ function Login() {
     setUserEmail,
     setUserPassword,
     setUsername,
+    setToken,
   } = useContext(MyContext);
 
   const validateUser = async () => {
@@ -36,6 +37,7 @@ function Login() {
       setUserEmail(email);
       setUserPassword(password);
       setUsername(user.name);
+      setToken(user.token);
       setLogged(true);
     } else {
       setError('Usuário inválido');
