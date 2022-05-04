@@ -23,8 +23,10 @@ function ProductCard(props) {
         src={ urlImage }
         alt={ `${name}-thumbnail` }
       />
-      <h1 data-testid={ `customer_products__element-card-title-${id}` }>{name}</h1>
-      <QuantityController id={ id } />
+      <div className="card-info">
+        <h1 data-testid={ `customer_products__element-card-title-${id}` }>{name}</h1>
+        <QuantityController id={ id } />
+      </div>
     </div>
   );
 }
