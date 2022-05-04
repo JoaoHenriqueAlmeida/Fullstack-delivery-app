@@ -1,8 +1,14 @@
 const { Op } = require('sequelize');
 const genericService = require('./basicService');
 const { Sales } = require('../database/models');
+const { SalesProducts } = require('../database/models');
 
-const createSale = async (data) => genericService.create(Sales, data);
+
+const createSale = async (data) => {
+  const sale = await genericService.create(Sales, data);
+  await SalesProducts.create({ sale_id: sale.id, product_id: data.product_id, quantity: data.quantity });
+  return sale;
+};
 
 const readSales = async () => genericService.read(Sales);
 

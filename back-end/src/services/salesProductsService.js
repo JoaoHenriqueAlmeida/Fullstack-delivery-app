@@ -1,4 +1,4 @@
-const { SalesProducts, Sales, Products } = require('../../models');
+const { SalesProducts, Sales, Products } = require('../database/models');
 const genericService = require('./basicService');
 
 const readSaleProducts = async () => {
@@ -8,7 +8,7 @@ const readSaleProducts = async () => {
 
 const getQuantityOnSale = async () => {
   const saleData = await SalesProducts.findAll({
-    include: [{ model: Sales, as: 'sale' }, { model: Products, as: 'product' }],
+    include: [{ model: Sales, as: 'sale_products' }, { model: Products, as: 'product_sales' }],
   });
 
   console.log(saleData);
@@ -17,4 +17,5 @@ const getQuantityOnSale = async () => {
 
 module.exports = {
   readSaleProducts,
+  getQuantityOnSale,
 }
