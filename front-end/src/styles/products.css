@@ -1,3 +1,11 @@
 .vitrine {
   display: flex;
+  flex-wrap: wrap;
+  width: 100rem;
+}
+
+.container-vitrine {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
