@@ -1,13 +1,12 @@
 /* const sinon = require('sinon'); */
-import chai from 'chai';
-import chaiHttp from 'chai-http';
+const chai = require('chai')
+const chaiHttp = require('chai-http')
 
-import app from '../../api/app';
+const app = require('../../api/app')
 
+const { accurateLoginRequest, loginResponseMock } = require('../mocks/userMocks') ;
 
-import { accurateLoginRequest, loginResponseMock } from '../mocks/userMocks';
-
-use(chaiHttp);
+app.use(chaiHttp);
 
 const { expect } = chai;
 
