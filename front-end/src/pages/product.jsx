@@ -20,10 +20,12 @@ function Product() {
   }, [token]);
 
   return (
-    <div className="vitrine">
+    <div>
       <Navbar username={ username } />
       <h1>Produtos</h1>
-      { products.map((e) => ProductCard(e)) }
+      <div className="vitrine">
+        { products.map((e) => ProductCard(e)) }
+      </div>
       <button
         type="button"
         data-testid="customer_products__button-cart"
