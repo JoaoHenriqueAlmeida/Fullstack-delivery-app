@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import { requestProducts } from '../utils/requests';
 import { MyContext } from '../context/Provider';
+import '../styles/products.css';
 
 function Product() {
   const navigate = useNavigate();
@@ -25,10 +26,12 @@ function Product() {
   }, [token]);
 
   return (
-    <>
+    <div>
       <Navbar username={ username } />
       <h1>Produtos</h1>
-      { products.map((e) => ProductCard(e)) }
+      <div className="vitrine">
+        { products.map((e) => ProductCard(e)) }
+      </div>
       <button
         type="button"
         data-testid="customer_products__button-cart"
@@ -37,7 +40,7 @@ function Product() {
         Ver Carrinho:
         <span data-testid="customer_products__checkout-bottom-value"> R$ 0,00</span>
       </button>
-    </>
+    </div>
   );
 }
 
