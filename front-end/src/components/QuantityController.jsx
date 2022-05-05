@@ -5,9 +5,14 @@ import { MyContext } from '../context/Provider';
 
 function QuantityController(props) {
   const { id } = props;
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(Number());
   const [disabled, setDisabled] = useState(true);
-  const { removeProductFromCart, addProductToCart, products } = useContext(MyContext);
+  const {
+    removeProductFromCart,
+    addProductToCart,
+    manualInput,
+    products,
+  } = useContext(MyContext);
 
   useEffect(() => {
     if (quantity < 0) setQuantity(0);
@@ -31,8 +36,13 @@ function QuantityController(props) {
       </button>
       <input
         data-testid={ `customer_products__input-card-quantity-${id}` }
-        // onChange={ ({ target }) => setQuantity(Number(target.value)) }
-        value={ quantity }
+        onChange={ (({ target }) => {
+          manualInput({ ...products[id - 1], quantity: Number(target.value) });
+          setQuantity(Number(target.value));
+        }) }
+        type="text"
+        pattern="[0-9]+"
+        value={ !quantity || Number.isNaN(quantity) ? 0 : quantity }
       />
       <button
         type="button"
