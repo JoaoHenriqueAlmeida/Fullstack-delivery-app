@@ -35,7 +35,7 @@ function Product() {
       <button
         type="button"
         data-testid="customer_products__button-cart"
-        onClick={ () => navigate('/checkout', { replace: true }) }
+        onClick={ (() => navigate('/checkout', { replace: true })) }
       >
         Ver Carrinho:
         <span data-testid="customer_products__checkout-bottom-value">
