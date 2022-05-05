@@ -28,7 +28,7 @@ function Navbar(props) {
       <a
         href="/"
         data-testid="customer_products__element-navbar-link-logout"
-        onClick={ (() => localStorage.removeItem('user')) }
+        onClick={ () => localStorage.removeItem('user') }
       >
         Sair
       </a>
