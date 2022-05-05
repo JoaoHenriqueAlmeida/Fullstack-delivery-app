@@ -5,7 +5,7 @@ import { MyContext } from '../context/Provider';
 
 function QuantityController(props) {
   const { id } = props;
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(Number());
   const [disabled, setDisabled] = useState(true);
   const {
     removeProductFromCart,
@@ -40,7 +40,9 @@ function QuantityController(props) {
           manualInput({ ...products[id - 1], quantity: Number(target.value) });
           setQuantity(Number(target.value));
         }) }
-        value={ quantity }
+        type="text"
+        pattern="[0-9]+"
+        value={ !quantity || Number.isNaN(quantity) ? 0 : quantity }
       />
       <button
         type="button"
