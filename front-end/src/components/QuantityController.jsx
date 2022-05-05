@@ -29,11 +29,10 @@ function QuantityController(props) {
       >
         <FaMinusSquare />
       </button>
-
-      <span data-testid={ `customer_products__input-card-quantity-${id}` }>
-        { quantity }
-      </span>
-
+      <input
+        data-testid={ `customer_products__input-card-quantity-${id}` }
+        value={ quantity }
+      />
       <button
         type="button"
         aria-label="add-product"
