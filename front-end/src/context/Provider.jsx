@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { createContext, useState, useReducer } from 'react';
-import { shopReducer, ADD_PRODUCT, REMOVE_PRODUCT } from './reducers';
+import { shopReducer, ADD_PRODUCT, REMOVE_PRODUCT, MANUAL_INPUT } from './reducers';
 
 export const MyContext = createContext();
 
@@ -34,6 +34,10 @@ export function Provider({ children }) {
     dispatch({ type: REMOVE_PRODUCT, productId });
   };
 
+  const manualInput = (inputProduct) => {
+    dispatch({ type: MANUAL_INPUT, inputProduct });
+  };
+
   const context = {
     userEmail,
     setUserEmail,
@@ -47,6 +51,7 @@ export function Provider({ children }) {
     cart: cartState.cart,
     addProductToCart,
     removeProductFromCart,
+    manualInput,
   };
 
   return (

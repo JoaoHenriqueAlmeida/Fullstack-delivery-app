@@ -7,7 +7,12 @@ function QuantityController(props) {
   const { id } = props;
   const [quantity, setQuantity] = useState(0);
   const [disabled, setDisabled] = useState(true);
-  const { removeProductFromCart, addProductToCart, products } = useContext(MyContext);
+  const {
+    removeProductFromCart,
+    addProductToCart,
+    manualInput,
+    products,
+  } = useContext(MyContext);
 
   useEffect(() => {
     if (quantity < 0) setQuantity(0);
@@ -31,7 +36,10 @@ function QuantityController(props) {
       </button>
       <input
         data-testid={ `customer_products__input-card-quantity-${id}` }
-        // onChange={ ({ target }) => setQuantity(Number(target.value)) }
+        onChange={ (({ target }) => {
+          manualInput({ ...products[id - 1], quantity: Number(target.value) });
+          setQuantity(Number(target.value));
+        }) }
         value={ quantity }
       />
       <button
