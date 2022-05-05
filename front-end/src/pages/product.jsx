@@ -26,7 +26,7 @@ function Product() {
   }, [token]);
 
   return (
-    <div>
+    <div className="container-vitrine">
       <Navbar username={ username } />
       <h1>Produtos</h1>
       <div className="vitrine">
