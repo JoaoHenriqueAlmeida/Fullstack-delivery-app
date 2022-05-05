@@ -31,6 +31,7 @@ function QuantityController(props) {
       </button>
       <input
         data-testid={ `customer_products__input-card-quantity-${id}` }
+        // onChange={ ({ target }) => setQuantity(Number(target.value)) }
         value={ quantity }
       />
       <button

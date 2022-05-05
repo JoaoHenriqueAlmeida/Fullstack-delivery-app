@@ -10,6 +10,9 @@ function Product() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const { username, token, cart } = useContext(MyContext);
+  const sumCart = cart
+    .reduce((acc, { price, quantity }) => acc + price * quantity, 0)
+    .toFixed(2);
 
   useEffect(() => {
     if (!localStorage.getItem('cart')) {
@@ -35,13 +38,12 @@ function Product() {
       <button
         type="button"
         data-testid="customer_products__button-cart"
-        onClick={ (() => navigate('/checkout', { replace: true })) }
+        disabled={ sumCart <= 0 }
+        onClick={ (() => navigate('/customer/checkout', { replace: true })) }
       >
-        Ver Carrinho:
+        Ver Carrinho: R$
         <span data-testid="customer_products__checkout-bottom-value">
-          { ` R$ ${cart
-            .reduce((acc, { price, quantity }) => acc + price * quantity, 0)
-            .toFixed(2)}` }
+          { String(sumCart).replace('.', ',') }
         </span>
       </button>
     </div>
