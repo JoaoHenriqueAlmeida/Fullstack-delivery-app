@@ -19,12 +19,12 @@ function ProductCard(props) {
         {`R$ ${price.replace('.', ',')}`}
       </h3>
       <img
-        data-testid={ `customer_products__element-card-img-${id}` }
+        data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ urlImage }
         alt={ `${name}-thumbnail` }
       />
       <div className="card-info">
-        <h1 data-testid={ `customer_products__element-card-title-${id}` }>{name}</h1>
+        <h4 data-testid={ `customer_products__element-card-title-${id}` }>{name}</h4>
         <QuantityController id={ id } />
       </div>
     </div>
