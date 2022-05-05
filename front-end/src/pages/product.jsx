@@ -9,7 +9,7 @@ import '../styles/products.css';
 function Product() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  const { username, token } = useContext(MyContext);
+  const { username, token, cart } = useContext(MyContext);
 
   useEffect(() => {
     if (!localStorage.getItem('cart')) {
@@ -38,7 +38,11 @@ function Product() {
         onClick={ () => navigate('/checkout', { replace: true }) }
       >
         Ver Carrinho:
-        <span data-testid="customer_products__checkout-bottom-value"> R$ 0,00</span>
+        <span data-testid="customer_products__checkout-bottom-value">
+          { ` R$ ${cart
+            .reduce((acc, { price, quantity }) => acc + price * quantity, 0)
+            .toFixed(2)}` }
+        </span>
       </button>
     </div>
   );
