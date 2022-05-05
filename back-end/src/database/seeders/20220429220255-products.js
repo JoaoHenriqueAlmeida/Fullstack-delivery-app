@@ -11,9 +11,9 @@ module.exports = {
       },
       {
         id: 2,
-        name: 'Skol Beats Senses 313ml',
-        price: 4.49,
-        url_image: 'http://localhost:3001/images/skol_beats_senses_313ml.jpg',
+        name: 'Heineken 600ml',
+        price: 7.50,
+        url_image: 'http://localhost:3001/images/heineken_600ml.jpg',
       },
       {
         id: 3,
@@ -35,14 +35,14 @@ module.exports = {
       },
       {
         id: 6,
-        name: 'Heineken 600ml',
-        price: 7.50,
-        url_image: 'http://localhost:3001/images/heineken_600ml.jpg',
+        name: 'Skol Beats Senses 313ml',
+        price: 4.49,
+        url_image: 'http://localhost:3001/images/skol_beats_senses_313ml.jpg',
       },
       {
         id: 7,
         name: 'Becks 330ml',
-        price: 4.49,
+        price: 4.99,
         url_image: 'http://localhost:3001/images/becks_330ml.jpg',
       },
       {
@@ -74,6 +74,5 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
     await queryInterface.bulkDelete('products', null, {});
-    
-  }
+  },
 };

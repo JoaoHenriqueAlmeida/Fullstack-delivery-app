@@ -12,11 +12,11 @@ export function Provider({ children }) {
 
   const products = [
     { id: 1, title: 'Skol Lata 250ml', price: 2.20 },
-    { id: 2, title: 'Skol Beat Senses 313ml', price: 4.49 },
+    { id: 2, title: 'Heineken 600ml', price: 7.50 },
     { id: 3, title: 'Antarctica Pilsen 300ml', price: 2.49 },
     { id: 4, title: 'Brahma 600ml', price: 7.50 },
     { id: 5, title: 'Skol 269ml', price: 2.19 },
-    { id: 6, title: 'Heineken 600ml', price: 7.50 },
+    { id: 6, title: 'Skol Beat Senses 313ml', price: 4.49 },
     { id: 7, title: 'Becks 330ml', price: 4.49 },
     { id: 8, title: 'Brahma Duplo Malte 350ml', price: 2.79 },
     { id: 9, title: 'Becks 600ml', price: 8.89 },
