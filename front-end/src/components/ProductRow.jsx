@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { MyContext } from '../context/Provider';
 
 function ProductRow(props, index) {
+  const { removeItem } = useContext(MyContext);
   const { id, title, price, quantity } = props;
+
   return (
     <tr key={ id }>
       <td data-testid={ `customer_checkout__element-order-table-item-number-${index}` }>
@@ -25,6 +28,7 @@ function ProductRow(props, index) {
           data-testid={ `customer_checkout__element-order-table-remove-${index}` }
           type="button"
           aria-label="remove-product-button"
+          onClick={ (() => removeItem(id)) }
         >
           Remover
         </button>
