@@ -2,10 +2,6 @@ const { Op } = require('sequelize');
 const genericService = require('./basicService');
 const { Sales } = require('../database/models');
 const { SalesProducts } = require('../database/models');
-{
-
-}
-
 
 const createSale = async (data) => {
   const saleData = {
