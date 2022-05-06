@@ -28,6 +28,7 @@ function Login() {
     setUserPassword,
     setUsername,
     setToken,
+    setUserId,
   } = useContext(MyContext);
 
   const validateUser = async () => {
@@ -38,7 +39,11 @@ function Login() {
       setUserPassword(password);
       setUsername(user.name);
       setToken(user.token);
-      const userToSave = JSON.stringify(user);
+      setUserId(user.id);
+      const userToSave = JSON
+        .stringify({
+          name: user.name, email: user.email, role: user.role, token: user.token,
+        });
       localStorage.setItem('user', userToSave);
       setLogged(true);
     } else {

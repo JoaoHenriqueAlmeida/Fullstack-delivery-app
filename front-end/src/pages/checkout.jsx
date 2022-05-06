@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ProductRow from '../components/ProductRow';
@@ -7,11 +7,25 @@ import { createSale } from '../utils/requests';
 import { MyContext } from '../context/Provider';
 
 function Checkout() {
-  const { cart, username, token } = useContext(MyContext);
+  const { cart, userId, token } = useContext(MyContext);
+  const [address, setAddress] = useState('');
+  const [addressNumber, setAddressNumber] = useState(Number());
+  const [sellerId, setSellerId] = useState(2);
   const navigate = useNavigate();
   const sumCart = cart
     .reduce((acc, { price, quantity }) => acc + price * quantity, 0)
     .toFixed(2);
+
+  const newSale = {
+    userId,
+    sellerId,
+    totalPrice: sumCart,
+    deliveryAddress: address,
+    deliveryNumber: addressNumber,
+    saleDate: new Date(),
+    status: 'Pendente',
+    cart,
+  };
 
   return (
     <main>
@@ -39,13 +53,17 @@ function Checkout() {
       >
         { `Total: R$ ${String(sumCart).replace('.', ',')}` }
       </button>
-      <DeliveryDetails />
+      <DeliveryDetails
+        setAddress={ setAddress }
+        setAddressNumber={ setAddressNumber }
+        setSellerId={ setSellerId }
+      />
       <button
         type="button"
         data-testid="customer_checkout__button-submit-order"
         onClick={ (async () => {
-          const results = await createSale(token, cart);
-          navigate(`/customer/orders/${results}`, { replace: true });
+          const results = await createSale(token, newSale);
+          navigate(`/customer/orders/${results.id}`, { replace: true });
         }) }
       >
         Finalizar Pedido

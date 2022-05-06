@@ -1,7 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SelectSeller from './SelectSeller';
 
-function DeliveryDetails() {
+function DeliveryDetails(props) {
+  const { setAddress, setAddressNumber, setSeller } = props;
+
   return (
     <table>
       <thead>
@@ -14,13 +17,14 @@ function DeliveryDetails() {
       <tbody>
         <tr>
           <td>
-            <SelectSeller />
+            <SelectSeller setSeller={ setSeller } />
           </td>
           <td>
             <input
               data-testid="customer_checkout__input-address"
               type="text"
               placeholder="Logradouro"
+              onChange={ ({ target }) => setAddress(target.value) }
             />
           </td>
           <td>
@@ -28,6 +32,7 @@ function DeliveryDetails() {
               data-testid="customer_checkout__input-addressNumber"
               type="text"
               placeholder="Número"
+              onChange={ ({ target }) => setAddressNumber(target.value) }
             />
           </td>
         </tr>
@@ -35,5 +40,11 @@ function DeliveryDetails() {
     </table>
   );
 }
+
+DeliveryDetails.propTypes = {
+  setAddress: PropTypes.func,
+  setAddressNumber: PropTypes.func,
+  setSeller: PropTypes.func,
+}.isRequired;
 
 export default DeliveryDetails;

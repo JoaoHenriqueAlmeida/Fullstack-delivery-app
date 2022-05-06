@@ -9,6 +9,7 @@ export function Provider({ children }) {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [username, setUsername] = useState('');
+  const [userId, setUserId] = useState(Number());
   const [token, setToken] = useState('');
 
   const products = [
@@ -50,6 +51,8 @@ export function Provider({ children }) {
     setUserPassword,
     username,
     setUsername,
+    userId,
+    setUserId,
     token,
     setToken,
     products,
