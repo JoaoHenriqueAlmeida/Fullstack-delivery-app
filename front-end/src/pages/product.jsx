@@ -31,7 +31,6 @@ function Product() {
   return (
     <div className="container-vitrine">
       <Navbar username={ username } />
-      <h1>Produtos</h1>
       <div className="vitrine">
         { products.map((e) => ProductCard(e)) }
       </div>
