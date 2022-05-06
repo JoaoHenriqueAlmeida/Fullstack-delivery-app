@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ProductRow from '../components/ProductRow';
 import DeliveryDetails from '../components/DeliveryDetails';
+import { createSale } from '../utils/requests';
 import { MyContext } from '../context/Provider';
 
 function Checkout() {
-  const { cart, username } = useContext(MyContext);
+  const { cart, username, token } = useContext(MyContext);
+  const navigate = useNavigate();
   const sumCart = cart
     .reduce((acc, { price, quantity }) => acc + price * quantity, 0)
     .toFixed(2);
@@ -40,6 +43,10 @@ function Checkout() {
       <button
         type="button"
         data-testid="customer_checkout__button-submit-order"
+        onClick={ (async () => {
+          const results = await createSale(token, cart);
+          navigate(`/customer/orders/${!results ? 1 : results.id}`, { replace: true });
+        }) }
       >
         Finalizar Pedido
       </button>
