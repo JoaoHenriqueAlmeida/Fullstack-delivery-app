@@ -20,6 +20,7 @@ const login = async (email, password) => {
   const token = await generateToken({ email });
 
   return {
+    id: result.id,
     name: result.name,
     email: result.email,
     role: result.role,

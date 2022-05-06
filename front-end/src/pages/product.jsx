@@ -31,13 +31,13 @@ function Product() {
   return (
     <div className="container-vitrine">
       <Navbar username={ username } />
-      <h1>Produtos</h1>
       <div className="vitrine">
         { products.map((e) => ProductCard(e)) }
       </div>
       <button
         type="button"
         data-testid="customer_products__button-cart"
+        className="button-carrinho"
         disabled={ sumCart <= 0 }
         onClick={ (() => navigate('/customer/checkout', { replace: true })) }
       >

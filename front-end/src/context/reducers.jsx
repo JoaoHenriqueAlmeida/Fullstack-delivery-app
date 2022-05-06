@@ -1,6 +1,7 @@
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 export const MANUAL_INPUT = 'MANUAL_INPUT';
+export const REMOVE_ITEM = 'REMOVE_ITEM';
 
 // https://codesandbox.io/s/nnwl26w86l?file=/src/context/reducers.js:627-667
 
@@ -52,6 +53,15 @@ const manualInput = (inputProduct, state) => {
   return { ...state, cart: updatedCart };
 };
 
+const removeItem = (productId, state) => {
+  const updatedCart = [...state.cart];
+  const updatedItemIndex = updatedCart.findIndex((item) => item.id === productId);
+
+  updatedCart.splice(updatedItemIndex, 1);
+
+  return { ...state, cart: updatedCart };
+};
+
 export const shopReducer = (state, action) => {
   switch (action.type) {
   case ADD_PRODUCT:
@@ -60,6 +70,8 @@ export const shopReducer = (state, action) => {
     return removeProductFromCart(action.productId, state);
   case MANUAL_INPUT:
     return manualInput(action.inputProduct, state);
+  case REMOVE_ITEM:
+    return removeItem(action.productId, state);
   default:
     return state;
   }

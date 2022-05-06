@@ -1,7 +1,9 @@
 .vitrine {
   display: flex;
   flex-wrap: wrap;
-  width: 100rem;
+  justify-content: center;
+  margin-top: 2%;
+  max-width: 90%;
 }
 
 .container-vitrine {
@@ -9,3 +11,17 @@
   display: flex;
   flex-direction: column;
 }
+
+.button-carrinho {
+  align-self: flex-end;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  color: var(--text-light);
+  font-size: 36px;
+  font-weight: 500;
+  margin-right: 1%;
+  margin-top: 44%;
+  padding: 10px;
+  position: fixed;
+}
+

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { createContext, useState, useReducer } from 'react';
-import { shopReducer, ADD_PRODUCT, REMOVE_PRODUCT, MANUAL_INPUT } from './reducers';
+import { shopReducer, ADD_PRODUCT,
+  REMOVE_PRODUCT, MANUAL_INPUT, REMOVE_ITEM } from './reducers';
 
 export const MyContext = createContext();
 
@@ -8,6 +9,7 @@ export function Provider({ children }) {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [username, setUsername] = useState('');
+  const [userId, setUserId] = useState(Number());
   const [token, setToken] = useState('');
 
   const products = [
@@ -20,7 +22,7 @@ export function Provider({ children }) {
     { id: 7, title: 'Becks 330ml', price: 4.99 },
     { id: 8, title: 'Brahma Duplo Malte 350ml', price: 2.79 },
     { id: 9, title: 'Becks 600ml', price: 8.89 },
-    { id: 10, title: 'Skol Beats Senses 260ml', price: 3.57 },
+    { id: 10, title: 'Skol Beats Senses 269ml', price: 3.57 },
     { id: 11, title: 'Stella Artois 275ml', price: 3.49 },
   ];
 
@@ -38,6 +40,10 @@ export function Provider({ children }) {
     dispatch({ type: MANUAL_INPUT, inputProduct });
   };
 
+  const removeItem = (productId) => {
+    dispatch({ type: REMOVE_ITEM, productId });
+  };
+
   const context = {
     userEmail,
     setUserEmail,
@@ -45,6 +51,8 @@ export function Provider({ children }) {
     setUserPassword,
     username,
     setUsername,
+    userId,
+    setUserId,
     token,
     setToken,
     products,
@@ -52,6 +60,7 @@ export function Provider({ children }) {
     addProductToCart,
     removeProductFromCart,
     manualInput,
+    removeItem,
   };
 
   return (
