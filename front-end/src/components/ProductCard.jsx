@@ -24,7 +24,7 @@ function ProductCard(props) {
         alt={ `${name}-thumbnail` }
       />
       <div className="card-info">
-        <h4 data-testid={ `customer_products__element-card-title-${id}` }>{name}</h4>
+        <h2 data-testid={ `customer_products__element-card-title-${id}` }>{name}</h2>
         <QuantityController id={ id } />
       </div>
     </div>

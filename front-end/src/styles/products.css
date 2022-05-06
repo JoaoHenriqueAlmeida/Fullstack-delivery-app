@@ -1,11 +1,21 @@
 .vitrine {
   display: flex;
   flex-wrap: wrap;
-  width: 100rem;
+  justify-content: center;
+  max-width: 90%;
 }
 
 .container-vitrine {
   align-items: center;
   display: flex;
   flex-direction: column;
+}
+
+.button-carrinho {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+}
+
+.button-carrinho span {
+  color: var(--text-light);
 }

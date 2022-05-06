@@ -10,29 +10,35 @@
 }
 
 .card h3 {
-  background-color: #eaf1ef;
-  border-radius: 30px;
-  margin-left: 10px;
+  background: rgba(242, 255, 252, 0.75);
+  border-radius: 10px;
+  color: var(--text-dark);
+  font-size: 36px;
+  margin: 0;
+  margin-left: 15px;
+  margin-top: 15px;
   padding: 10px;
-  width: 70px;
+  position: absolute;
 }
 
 .card-info {
   background-color: #eaf1ef;
   display: flex;
   flex-direction: column;
-  font-size: 12px;
+  font-size: 17px;
   height: 100%;
   justify-content: center;
   overflow: hidden;
   text-align: center;
 }
 
-.card-info h1 {
+.card-info h2 {
   margin: 0;
+  padding: 15px;
 }
 
 .card img {
-  max-height: 357px;
+  align-self: center;
+  max-height: 350px;
   max-width: 350px;
 }

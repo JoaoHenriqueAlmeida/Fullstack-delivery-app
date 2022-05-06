@@ -38,6 +38,7 @@ function Product() {
       <button
         type="button"
         data-testid="customer_products__button-cart"
+        className="button-carrinho"
         disabled={ sumCart <= 0 }
         onClick={ (() => navigate('/customer/checkout', { replace: true })) }
       >
