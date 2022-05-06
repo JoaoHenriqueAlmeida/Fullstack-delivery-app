@@ -27,7 +27,6 @@ function Checkout() {
         </thead>
         <tbody>
           { cart
-            .sort((a, b) => a.title.localeCompare(b.title))
             .map((e, index) => ProductRow(e, index)) }
         </tbody>
       </table>

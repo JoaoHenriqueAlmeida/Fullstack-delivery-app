@@ -15,10 +15,10 @@ function ProductRow(props, index) {
         { quantity }
       </td>
       <td data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }>
-        { price }
+        { String(price.toFixed(2)).replace('.', ',') }
       </td>
       <td data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }>
-        { (quantity * price).toFixed(2) }
+        { String((quantity * price).toFixed(2)).replace('.', ',') }
       </td>
       <td>
         <button
