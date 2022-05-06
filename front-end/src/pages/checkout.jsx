@@ -45,7 +45,7 @@ function Checkout() {
         data-testid="customer_checkout__button-submit-order"
         onClick={ (async () => {
           const results = await createSale(token, cart);
-          navigate(`/customer/orders/${!results ? 1 : results.id}`, { replace: true });
+          navigate(`/customer/orders/${results}`, { replace: true });
         }) }
       >
         Finalizar Pedido
