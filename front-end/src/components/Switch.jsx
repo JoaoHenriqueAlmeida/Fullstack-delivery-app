@@ -5,6 +5,7 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom';
+import Checkout from '../pages/checkout';
 import Login from '../pages/login';
 import Pedidos from '../pages/pedidos';
 import Product from '../pages/product';
@@ -18,7 +19,8 @@ export default function Switch() {
         <Route path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Register /> } />
         <Route path="/customer/products" element={ <Product /> } />
-        <Route path="/customer/orders" element={ <Pedidos /> } />
+        <Route path="/customer/checkout" element={ <Checkout /> } />
+        <Route path="/customer/orders/:id" element={ <Pedidos /> } />
       </Routes>
     </BrowserRouter>
   );
