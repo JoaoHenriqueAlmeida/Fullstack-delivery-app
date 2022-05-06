@@ -13,6 +13,17 @@ const requestUser = async (email, password) => {
   return user;
 };
 
+const requestSellers = async () => {
+  const options = {
+    method: 'GET',
+    headers: { 'Content-Type': contentType },
+  };
+  const results = fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/sellers`, options)
+    .then((response) => response.json())
+    .then((data) => data);
+  return results;
+};
+
 const createUser = async (name, email, password) => {
   const options = {
     method: 'POST',
@@ -39,13 +50,13 @@ const requestProducts = async (token) => {
   return results;
 };
 
-const createSale = async (token, cart) => {
+const createSale = async (token, sale) => {
   const reqHeaders = new Headers();
   reqHeaders.append('Authorization', token);
   reqHeaders.append('Content-Type', contentType);
   const options = {
     method: 'POST',
-    body: JSON.stringify(cart),
+    body: JSON.stringify(sale),
     headers: reqHeaders,
   };
   const results = await fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/customer/orders`, options)
@@ -57,6 +68,7 @@ const createSale = async (token, cart) => {
 export {
   requestUser,
   createUser,
+  requestSellers,
   requestProducts,
   createSale,
 };
