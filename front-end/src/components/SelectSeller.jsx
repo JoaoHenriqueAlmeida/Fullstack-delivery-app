@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function SelectSeller(props) {
-  const { setSeller } = props;
-  /*   const [sellers, setSellers] = useState([]);
+  const { setSellerId } = props;
+  /* const [sellers, setSellers] = useState([]);
 
   useEffect(() => {
     const fetchSellers = async () => {
@@ -16,9 +16,9 @@ function SelectSeller(props) {
   return (
     <select
       data-testid="customer_checkout__select-seller"
-      onChange={ ({ target }) => setSeller(target.value) }
+      onChange={ ({ target }) => setSellerId(target.value) }
     >
-      <option value="Fulana Pereira">Fulana Pereira</option>
+      <option value="2">Fulana Pereira</option>
       {/*       { sellers.map((e) => (
         <option
           key={ e.id }
@@ -31,7 +31,7 @@ function SelectSeller(props) {
 }
 
 SelectSeller.propTypes = {
-  setSeller: PropTypes.func.isRequired,
+  setSellerId: PropTypes.func.isRequired,
 };
 
 export default SelectSeller;
