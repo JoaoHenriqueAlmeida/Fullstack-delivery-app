@@ -33,12 +33,14 @@ function Checkout() {
       </table>
       <button
         type="button"
+        data-testid="customer_checkout__element-order-total-price"
       >
         { `Total: R$ ${String(sumCart).replace('.', ',')}` }
       </button>
       <DeliveryDetails />
       <button
         type="button"
+        data-testid="customer_checkout__button-submit-order"
       >
         Finalizar Pedido
       </button>

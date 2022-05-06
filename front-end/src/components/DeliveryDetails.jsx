@@ -1,4 +1,5 @@
 import React from 'react';
+import SelectSeller from './SelectSeller';
 
 function DeliveryDetails() {
   return (
@@ -12,9 +13,23 @@ function DeliveryDetails() {
       </thead>
       <tbody>
         <tr>
-          <td><input type="text" placeholder="Vendedor" /></td>
-          <td><input type="text" placeholder="Logradouro" /></td>
-          <td><input type="text" placeholder="Número" /></td>
+          <td>
+            <SelectSeller />
+          </td>
+          <td>
+            <input
+              data-testid="customer_checkout__input-address"
+              type="text"
+              placeholder="Logradouro"
+            />
+          </td>
+          <td>
+            <input
+              data-testid="customer_checkout__input-addressNumber"
+              type="text"
+              placeholder="Número"
+            />
+          </td>
         </tr>
       </tbody>
     </table>
