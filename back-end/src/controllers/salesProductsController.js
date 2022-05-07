@@ -7,4 +7,4 @@ const read = async (_req, res) => {
 
 module.exports = {
   read,
-}
+};
