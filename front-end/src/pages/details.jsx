@@ -34,9 +34,7 @@ function Details() {
           </tr>
         </thead>
         <tbody>
-          { sale
-            .cart
-            .map((e, index) => DetailRow(e, index)) }
+          { sale ? sale.map((e, index) => DetailRow(e, index)) : '' }
         </tbody>
       </table>
     </main>
