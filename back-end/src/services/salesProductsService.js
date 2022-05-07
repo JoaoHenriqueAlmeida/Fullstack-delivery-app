@@ -8,7 +8,7 @@ const readSaleProducts = async () => {
 
 const readSaleProductsById = async (id) => {
   const salesProducts = await SalesProducts.findAll({
-    where: { sale_id: id }
+    where: { saleId: id },
   });
   return salesProducts;
 };

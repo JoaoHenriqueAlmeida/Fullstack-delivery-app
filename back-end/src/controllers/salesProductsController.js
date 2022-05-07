@@ -7,11 +7,11 @@ const read = async (_req, res) => {
 
 const saleProductsById = async (req, res) => {
   const { id } = req.params;
-  const results = await salesProductsService.readSaleProductsById(id)
+  const results = await salesProductsService.readSaleProductsById(id);
   return res.status(200).json(results);
 };
 
 module.exports = {
   read,
-  saleProductsById
+  saleProductsById,
 };
