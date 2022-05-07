@@ -40,4 +40,4 @@ DetailRow.propTypes = {
   quantity: PropTypes.number.isRequired,
 };
 
-export default ProductRow;
+export default DetailRow;

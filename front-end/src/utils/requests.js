@@ -52,6 +52,7 @@ const createSale = async (token, sale) => {
   const results = await fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/sales`, options)
     .then((response) => response.json())
     .then((data) => data);
+  console.log(results);
   return results;
 };
 

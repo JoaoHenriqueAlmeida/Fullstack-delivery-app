@@ -5,19 +5,20 @@ const { SalesProducts } = require('../database/models');
 
 const createSale = async (data) => {
   const saleData = {
-    userId: data.user_id,
-    sellerId: data.seller_id,
-    totalPrice: data.total_price,
-    deliveryAddress: data.delivery_address,
-    deliveryNumber: data.delivery_number,
-    saleDate: data.sale_date,
+    userId: data.userId,
+    sellerId: data.sellerId,
+    totalPrice: data.totalPrice,
+    deliveryAddress: data.deliveryAddress,
+    deliveryNumber: data.deliveryNumber,
+    saleDate: data.saleDate,
     status: data.status,    
   };
 
   const sale = await genericService.create(Sales, saleData);
-  const salesProducts = Promise.all(data.vendas.map(async (venda) => {
-    await SalesProducts
-    .create({ saleId: sale.id, productId: venda.product_id, quantity: venda.quantity });
+  const salesProducts = await Promise.all(data.cart.map(async (venda) => {
+    const results = await SalesProducts
+      .create({ saleId: sale.id, productId: venda.id, quantity: venda.quantity });
+    return results;
   }));
   return { sale, salesProducts };
 };

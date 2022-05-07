@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getSale } from '../utils/requests';
 import { MyContext } from '../context/Provider';
@@ -8,7 +8,7 @@ import DetailRow from '../components/DetailRow';
 
 function Details() {
   const [sale, setSale] = useState([]);
-  const { token } = useContext(MyContext);
+  const { token, username } = useContext(MyContext);
   const { id } = useParams();
 
   useEffect(() => {

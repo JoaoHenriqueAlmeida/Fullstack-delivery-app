@@ -7,7 +7,7 @@ import { createSale } from '../utils/requests';
 import { MyContext } from '../context/Provider';
 
 function Checkout() {
-  const { cart, userId, token } = useContext(MyContext);
+  const { cart, userId, token, username } = useContext(MyContext);
   const [address, setAddress] = useState('');
   const [addressNumber, setAddressNumber] = useState(Number());
   const [sellerId, setSellerId] = useState(2);
@@ -19,12 +19,19 @@ function Checkout() {
   const newSale = {
     userId,
     sellerId,
-    totalPrice: sumCart,
+    totalPrice: Number(sumCart),
     deliveryAddress: address,
     deliveryNumber: addressNumber,
     saleDate: new Date(),
     status: 'Pendente',
     cart,
+  };
+
+  const submitSale = async () => {
+    const results = await createSale(token, newSale);
+    if (results.id) {
+      navigate(`/customer/orders/${results.id}`, { replace: true });
+    }
   };
 
   return (
@@ -61,10 +68,7 @@ function Checkout() {
       <button
         type="button"
         data-testid="customer_checkout__button-submit-order"
-        onClick={ (async () => {
-          const results = await createSale(token, newSale);
-          navigate(`/customer/orders/${results.id}`, { replace: true });
-        }) }
+        onClick={ () => submitSale() }
       >
         Finalizar Pedido
       </button>

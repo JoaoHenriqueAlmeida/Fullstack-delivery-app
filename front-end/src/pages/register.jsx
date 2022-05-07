@@ -12,7 +12,7 @@ function Register() {
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
   const [error, setError] = useState('');
-  const { setUsername, setToken } = useContext(MyContext);
+  const { setUsername, setToken, setUserId } = useContext(MyContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,6 +36,7 @@ function Register() {
       console.log(newUser);
       setUsername(newUser.name);
       setToken(newUser.token);
+      setUserId(newUser.id);
       const userToSave = JSON
         .stringify({
           name, email, role: newUser.role, token: newUser.token,
