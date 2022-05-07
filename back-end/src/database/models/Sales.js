@@ -35,8 +35,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     status: {
+      defaultValue: 'pendente',
       type: DataTypes.STRING({ length: 50 }),
-      allowNull: false,
     }
   },
   {
