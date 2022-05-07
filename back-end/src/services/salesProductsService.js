@@ -4,7 +4,7 @@ const genericService = require('./basicService');
 const readSaleProducts = async () => {
   const salesProducts = await genericService.read(SalesProducts);
   return salesProducts;
-}
+};
 
 const getQuantityOnSale = async () => {
   const saleData = await SalesProducts.findAll({
@@ -13,9 +13,9 @@ const getQuantityOnSale = async () => {
 
   console.log(saleData);
   return saleData;
-}
+};
 
 module.exports = {
   readSaleProducts,
   getQuantityOnSale,
-}
+};
