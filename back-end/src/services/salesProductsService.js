@@ -6,6 +6,13 @@ const readSaleProducts = async () => {
   return salesProducts;
 };
 
+const readSaleProductsById = async (id) => {
+  const salesProducts = await SalesProducts.findAll({
+    where: { saleId: id },
+  });
+  return salesProducts;
+};
+
 const getQuantityOnSale = async () => {
   const saleData = await SalesProducts.findAll({
     include: [{ model: Sales, as: 'sale_products' }, { model: Products, as: 'product_sales' }],
@@ -18,4 +25,5 @@ const getQuantityOnSale = async () => {
 module.exports = {
   readSaleProducts,
   getQuantityOnSale,
+  readSaleProductsById,
 };
