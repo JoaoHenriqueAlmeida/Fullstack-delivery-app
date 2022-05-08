@@ -28,7 +28,7 @@ const readOne = async (req, res) => {
 
 const readSaleByUserId = async (req, res) => {
   try {
-    const sale = await salesService.readSaleByUser(req.params.id);
+    const sale = await salesService.readSaleByUserId(req.params.id);
     return res.status(200).json(sale);
   } catch (e) {
     return res.status(400).json({ message: e.message });
