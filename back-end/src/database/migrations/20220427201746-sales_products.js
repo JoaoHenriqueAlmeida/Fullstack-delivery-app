@@ -5,17 +5,20 @@ module.exports = {
     await queryInterface.createTable('salesProducts', {
       sale_id: {
         allowNull: false,
+        // field: 'sale_id',
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
           model: 'sales',
           key: 'id',
         },
+        foreignKey: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
       product_id: {
         allowNull: false,
+        // field: 'product_id',
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
@@ -23,6 +26,7 @@ module.exports = {
           key: 'id',
         },
         primaryKey: true,
+        foreignKey: true,
         type: Sequelize.INTEGER,
       },
       quantity: {
