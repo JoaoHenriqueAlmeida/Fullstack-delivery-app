@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const prefix = 'customer_order_details__';
 
 function SaleHeader(props) {
-  const { id, seller, saleDate, status } = props;
+  const { id, sellerId, saleDate, status } = props;
   const formatNumber = (number, length) => String(number).padStart(length, '0');
 
   return (
@@ -18,7 +18,7 @@ function SaleHeader(props) {
         <th
           data-testid={ `${prefix}element-order-details-label-seller-name` }
         >
-          { `P. Vend: ${seller}` }
+          { `P. Vend: ${sellerId}` }
         </th>
         <th
           data-testid={ `${prefix}element-order-details-label-order-date` }
@@ -45,7 +45,7 @@ function SaleHeader(props) {
 
 SaleHeader.propTypes = {
   id: PropTypes.number,
-  seller: PropTypes.string,
+  sellerId: PropTypes.number,
   saleDate: PropTypes.string,
   status: PropTypes.string,
 }.isRequired;

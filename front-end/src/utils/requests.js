@@ -64,7 +64,7 @@ const requestSales = async (id, token) => {
     method: 'GET',
     headers: reqHeaders,
   };
-  const results = await fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/orders/${id}`, options)
+  const results = await fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/customer/${id}`, options)
     .then((response) => response.json())
     .then((data) => data);
   return results;
@@ -78,7 +78,7 @@ const getSale = async (id, token) => {
     method: 'GET',
     headers: reqHeaders,
   };
-  const results = await fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/sales/${id}`, options)
+  const results = await fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/orders/${id}`, options)
     .then((response) => response.json())
     .then((data) => data);
   return results;
