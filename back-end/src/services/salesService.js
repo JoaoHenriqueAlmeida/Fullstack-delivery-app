@@ -58,7 +58,30 @@ const readSaleByUserId = async (id) => {
   return sale;
 };
 
+const readSaleBySellerId = async (id) => {
+  const sale = await Sales.findAll({
+    where: { sellerId: id },
+    include: [{ model: Users, as: 'user_sales' }],
+  });
+
+  if (!sale) throw new Error('Vendedor não participou dessa venda');
+
+  return sale;
+};
+
 const updateSale = async (id, data) => genericService.update(Sales, id, data);
+
+const updateSaleStatus = async (id, status) => {
+  const sale = await Sales.findOne({
+    where: { id },    
+  });
+  
+  if (!sale) throw new Error('Venda não encontrada');
+  
+  sale.set({ status: status.status });
+  await sale.save();
+  return sale;
+};
 
 const deleteSale = async (id) => genericService.delete(Sales, id);
 
@@ -68,6 +91,8 @@ module.exports = {
   readSale,
   readSaleByUsersInvolved,
   readSaleByUserId,
+  readSaleBySellerId,
   updateSale,
+  updateSaleStatus,
   deleteSale,
 };
