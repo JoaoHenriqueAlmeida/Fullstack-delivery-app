@@ -15,7 +15,7 @@ router.post('/register', userController.register);
 // router.use(jwtAuth);
 router.get('/products', validateAuthField, jwtAuth, productsController.read);
 router.get('/products/:id', validateAuthField, jwtAuth, productsController.readOne);
-router.get('/sales/:id', validateAuthField, jwtAuth, salesController.readSaleByUserId);
+router.get('/orders', validateAuthField, jwtAuth, salesController.readSaleByUserId);
 router.get('/orders/:id', validateAuthField, jwtAuth,
 salesProductsController.saleProductsById);
 router.post('/sales', validateAuthField, jwtAuth, salesController.create);
