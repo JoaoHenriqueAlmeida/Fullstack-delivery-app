@@ -6,8 +6,9 @@ const read = async (_req, res) => {
 };
 
 const saleProductsById = async (req, res) => {
-  const { order } = req.params;
-  const results = await salesProductsService.readSaleProductsById(order);
+  const { id } = req.params;
+  const results = await salesProductsService.readSaleProductsById(id);
+  if (!results) res.status(404).json({ message: 'Venda não encontrada' });
   return res.status(200).json(results);
 };
 

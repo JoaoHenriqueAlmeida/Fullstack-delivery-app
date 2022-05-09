@@ -16,7 +16,8 @@ router.post('/register', userController.register);
 router.get('/products', validateAuthField, jwtAuth, productsController.read);
 router.get('/products/:id', validateAuthField, jwtAuth, productsController.readOne);
 router.get('/sales/:id', validateAuthField, jwtAuth, salesController.readSaleByUserId);
-router.get('/custom/sales/:order', validateAuthField, jwtAuth, salesProductsController.saleProductsById);
+router.get('/sales-products/:id', validateAuthField, jwtAuth,
+salesProductsController.saleProductsById);
 router.post('/sales', validateAuthField, jwtAuth, salesController.create);
 // router.get('customer/:id', validateAuthField, jwtAuth, salesController.readSaleByUserId);
 module.exports = router;
