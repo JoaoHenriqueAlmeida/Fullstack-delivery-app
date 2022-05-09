@@ -29,7 +29,7 @@ const formatSalesObject = (data) => {
 const createSale = async (data) => {
   const sale = await genericService.create(Sales, formatSalesObject(data));
 
-  const salesProducts = await SalesProducts.bulkCreate(formatSalesProductArray(data.cart, sale.id));
+  const salesProducts = await SalesProducts.bulkCreate(formatSalesProductArray(data.cart, sale));
  
   return { sale, salesProducts };
 };
