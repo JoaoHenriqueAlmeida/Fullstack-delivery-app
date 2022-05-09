@@ -7,9 +7,10 @@ const readSaleProducts = async () => {
 };
 
 const readSaleProductsById = async (id) => {
-  const salesProducts = await SalesProducts.findAll({
-    where: { saleId: id },
-    include: [{ model: Sales, as: 'sl_products' }, { model: Products, as: 'pt_sales' }],
+  const salesProducts = await Sales.findAll({
+    where: { id },
+    include: [{ model: SalesProducts, as: 'sl_products' }],
+    // attributes: [],
   });
   console.log('salesProducts do service: ', salesProducts);
   return salesProducts;
