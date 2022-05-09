@@ -6,8 +6,8 @@ const read = async (_req, res) => {
 };
 
 const saleProductsById = async (req, res) => {
-  const { id } = req.params;
-  const results = await salesProductsService.readSaleProductsById(id);
+  const { order } = req.params;
+  const results = await salesProductsService.readSaleProductsById(order);
   return res.status(200).json(results);
 };
 
