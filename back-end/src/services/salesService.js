@@ -2,24 +2,27 @@ const { Op } = require('sequelize');
 const genericService = require('./basicService');
 const { Sales } = require('../database/models');
 const { SalesProducts } = require('../database/models');
+const { Users } = require('../database/models');
 
 const createSale = async (data) => {
   const saleData = {
-    userId: data.userId,
-    sellerId: data.sellerId,
+    userId: data.user_id,
+    sellerId: data.seller_id,
     totalPrice: data.totalPrice,
     deliveryAddress: data.deliveryAddress,
     deliveryNumber: data.deliveryNumber,
     saleDate: data.saleDate,
-    status: data.status,    
+    status: data.status,
   };
 
   const sale = await genericService.create(Sales, saleData);
-  const salesProducts = await Promise.all(data.cart.map(async (venda) => {
-    const results = await SalesProducts
-      .create({ saleId: sale.id, productId: venda.id, quantity: venda.quantity });
-    return results;
-  }));
+  console.log(sale);
+
+  const saleProductFormat = data.cart
+    .map((venda) => ({ saleId: sale.id, productId: venda.id, quantity: venda.quantity }));
+
+  const salesProducts = await SalesProducts.bulkCreate(saleProductFormat);
+ 
   console.log(salesProducts)
   return { sale, salesProducts };
 };
@@ -40,6 +43,7 @@ const readSaleByUsersInvolved = async (id) => {
 const readSaleByUserId = async (id) => {
   const sale = await Sales.findAll({
     where: { userId: id },
+    include: [{ model: Users, as: 'user_sales' }],
   });
 
   if (!sale) throw new Error('Usuário não participou dessa venda');
