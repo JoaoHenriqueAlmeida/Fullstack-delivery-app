@@ -17,8 +17,8 @@ function Checkout() {
     .toFixed(2);
 
   const newSale = {
-    userId,
-    sellerId,
+    user_id: userId,
+    seller_id: sellerId,
     totalPrice: Number(sumCart),
     deliveryAddress: address,
     deliveryNumber: addressNumber,
