@@ -4,8 +4,17 @@ const { Sales } = require('../database/models');
 const { SalesProducts } = require('../database/models');
 const { Users } = require('../database/models');
 
-const createSale = async (data) => {
-  const saleData = {
+const formatSalesProductArray = (cart, sale) => {
+  const salesProducts = cart.map((item) => ({
+    saleId: sale.id,
+    productId: item.id,
+    quantity: item.quantity,
+  }));
+  return salesProducts;
+};
+
+const formatSalesObject = (data) => {
+  const formattedSales = {
     userId: data.user_id,
     sellerId: data.seller_id,
     totalPrice: data.totalPrice,
@@ -14,16 +23,14 @@ const createSale = async (data) => {
     saleDate: data.saleDate,
     status: data.status,
   };
+  return formattedSales;
+};
 
-  const sale = await genericService.create(Sales, saleData);
-  console.log(sale);
+const createSale = async (data) => {
+  const sale = await genericService.create(Sales, formatSalesObject(data));
 
-  const saleProductFormat = data.cart
-    .map((venda) => ({ saleId: sale.id, productId: venda.id, quantity: venda.quantity }));
-
-  const salesProducts = await SalesProducts.bulkCreate(saleProductFormat);
+  const salesProducts = await SalesProducts.bulkCreate(formatSalesProductArray(data.cart, sale.id));
  
-  console.log(salesProducts)
   return { sale, salesProducts };
 };
 
