@@ -39,7 +39,7 @@ const readSales = async () => genericService.read(Sales);
 const readSale = async (id) => genericService.readOne(Sales, id);
 
 const readSaleByUsersInvolved = async (id) => {
-  const sale = await Sales.findOne({
+  const sale = await Sales.findAll({
     where: {
       [Op.or]: [{ sellerId: id }, { userId: id }],
     } });
