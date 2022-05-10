@@ -50,7 +50,7 @@ const readSaleByUsersInvolved = async (id) => {
 const readSaleByUserId = async (id) => {
   const sale = await Sales.findAll({
     where: { userId: id },
-    include: [{ model: Users, as: 'user_sales' }],
+    include: [{ model: Users, as: 'user_sales', attributes: ['id', 'email', 'name', 'role'] }],
   });
 
   if (!sale) throw new Error('Usuário não participou dessa venda');
@@ -61,8 +61,11 @@ const readSaleByUserId = async (id) => {
 const readSaleBySellerId = async (id) => {
   const sale = await Sales.findAll({
     where: { sellerId: id },
-    include: [{ model: Users, as: 'user_sales' }],
+    include: [{ model: Users, as: 'user_sales', attributes: ['id', 'email', 'name', 'role'] }],
+    
   });
+
+  console.log(sale);
 
   if (!sale) throw new Error('Vendedor não participou dessa venda');
 
