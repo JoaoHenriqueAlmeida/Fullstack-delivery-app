@@ -8,9 +8,18 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [logged, setLogged] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const navigate = useNavigate();
+
+  const {
+    setUserEmail,
+    setUserPassword,
+    setUsername,
+    setToken,
+    setUserId,
+    logged,
+    setLogged,
+  } = useContext(MyContext);
 
   useEffect(() => {
     const regex = (/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -23,13 +32,16 @@ function Login() {
     if (!emailValidation || !passwordValidation) setDisabled(true);
   }, [email, password]);
 
-  const {
-    setUserEmail,
-    setUserPassword,
-    setUsername,
-    setToken,
-    setUserId,
-  } = useContext(MyContext);
+  useEffect(() => {
+    const loggedUser = localStorage.getItem('user');
+    console.log(typeof getLocalStorage);
+    if (loggedUser) {
+      const parsedUser = JSON.parse(loggedUser);
+      setToken(parsedUser.token);
+
+      setLogged(true);
+    }
+  }, []);
 
   const validateUser = async () => {
     setError('');
