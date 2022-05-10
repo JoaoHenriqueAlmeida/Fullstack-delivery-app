@@ -9,6 +9,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [disabled, setDisabled] = useState(true);
+  const [userRole, setUserRole] = useState('customer');
   const navigate = useNavigate();
 
   const {
@@ -34,14 +35,13 @@ function Login() {
 
   useEffect(() => {
     const loggedUser = localStorage.getItem('user');
-    console.log(typeof getLocalStorage);
     if (loggedUser) {
       const parsedUser = JSON.parse(loggedUser);
       setToken(parsedUser.token);
-
+      setUserRole(parsedUser.role);
       setLogged(true);
     }
-  }, []);
+  }, [setLogged, setToken]);
 
   const validateUser = async () => {
     setError('');
@@ -63,7 +63,19 @@ function Login() {
     }
   };
 
-  if (logged) return <Navigate to="/customer/products" />;
+  const handleUserRole = (role) => {
+    const roles = {
+      customer: <Navigate to="/customer/products" />,
+      administrator: <Navigate to="/admin/manage" />,
+      seller: <Navigate to="/seller/orders" />,
+      default: <Navigate to="/customer/products" />,
+    };
+
+    return roles[role] || roles.default;
+  };
+
+  if (logged) return handleUserRole(userRole);
+
   return (
     <div className="div-login">
       <h1 className="logo">CETABOM ENTREGAS!</h1>
