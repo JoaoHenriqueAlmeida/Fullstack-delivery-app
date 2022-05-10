@@ -19,7 +19,7 @@ function SelectSeller(props) {
       onChange={ ({ target }) => setSellerId(target.value) }
     >
       <option value="2">Fulana Pereira</option>
-      {/*       { sellers.map((e) => (
+      {/* { sellers.map((e) => (
         <option
           key={ e.id }
           value={ e.id }

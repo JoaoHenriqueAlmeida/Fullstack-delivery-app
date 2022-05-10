@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { MyContext } from '../context/Provider';
 
 function DetailRow(props, index) {
-  const { id, title, price, quantity } = props;
+  const { productId, quantity } = props;
+  const { products } = useContext(MyContext);
 
   return (
-    <tr key={ id }>
+    <tr key={ productId }>
       <td
         data-testid={
           `customer_order_details__element-order-table-item-number-${index}`
@@ -14,29 +16,27 @@ function DetailRow(props, index) {
         { index + 1 }
       </td>
       <td data-testid={ `customer_order_details__element-order-table-name-${index}` }>
-        { title }
+        { products[productId - 1].title }
       </td>
       <td data-testid={ `customer_order_details__element-order-table-quantity-${index}` }>
         { quantity }
       </td>
       <td data-testid={ `customer_order_details__element-order-total-price-${index}` }>
-        { String(price.toFixed(2)).replace('.', ',') }
+        { products[productId - 1].price }
       </td>
       <td
         data-testid={
           `customer_order_details__element-order-table-sub-total-${index}`
         }
       >
-        { String((quantity * price).toFixed(2)).replace('.', ',') }
+        { (products[productId - 1].price * quantity).toFixed(2) }
       </td>
     </tr>
   );
 }
 
 DetailRow.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  productId: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
 };
 

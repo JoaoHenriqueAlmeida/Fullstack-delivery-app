@@ -1,35 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import SaleCard from '../components/SaleCard';
-// import { requestSales } from '../utils/requests';
+import { requestSales } from '../utils/requests';
 import { MyContext } from '../context/Provider';
 
-const array = [
-  {
-    id: 1,
-    status: 'pendente',
-    date: '24/04/2022',
-    price: 40.00,
-  },
-];
-
 function Orders() {
-  const { username } = useContext(MyContext);
-  // const [sales, setSales] = useState([]);
+  const { username, token } = useContext(MyContext);
+  const [sales, setSales] = useState([]);
 
-  /*   useEffect(() => {
+  useEffect(() => {
     const fetchSales = async () => {
-      const results = await requestSales(id, token);
+      const results = await requestSales(token);
       setSales(results);
     };
     fetchSales();
-  }, [token]); */
+  }, [token]);
 
   return (
     <div>
       <Navbar username={ username } />
       <h1>Pedidos</h1>
-      { array.map((e) => SaleCard(e)) }
+      { sales.map((e) => SaleCard(e)) }
     </div>
   );
 }
