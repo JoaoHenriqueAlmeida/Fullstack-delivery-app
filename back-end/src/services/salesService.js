@@ -50,9 +50,12 @@ const readSaleByUsersInvolved = async (id) => {
 
 const readSaleByUserId = async (token) => {
   const results = await userService.auth(token);
+
+  if (!results) throw new Error('Usuário não autenticado');
+
   const sale = await Sales.findAll({
     where: { userId: results.id },
-    include: [{ model: Users, as: 'user_sales' }],
+    include: [{ model: Users, as: 'user_sales', attributes: ['id', 'email', 'name', 'role'] }],
   });
 
   if (!sale) throw new Error('Usuário não participou dessa venda');
@@ -60,11 +63,18 @@ const readSaleByUserId = async (token) => {
   return sale;
 };
 
-const readSaleBySellerId = async (id) => {
+const readSaleBySellerId = async (token) => {
+  const results = await userService.auth(token);
+
+  if (!results) throw new Error('Usuário não autenticado');
+  
   const sale = await Sales.findAll({
-    where: { sellerId: id },
-    include: [{ model: Users, as: 'user_sales' }],
+    where: { sellerId: results.id },
+    include: [{ model: Users, as: 'user_sales', attributes: ['id', 'email', 'name', 'role'] }],
+    
   });
+
+  console.log(sale);
 
   if (!sale) throw new Error('Vendedor não participou dessa venda');
 
