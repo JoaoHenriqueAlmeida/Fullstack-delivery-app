@@ -4,9 +4,17 @@ import PropTypes from 'prop-types';
 const FOUR = 4;
 
 function SaleCard(props) {
-  const { id, status, date, price } = props;
+  const { id, status, saleDate, totalPrice } = props;
 
   const formatNumber = (number, length) => String(number).padStart(length, '0');
+  const formatDate = (value) => {
+    const date = new Date(value);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  };
 
   return (
     <div key={ id } style={ { display: 'flex', flexDirection: 'row' } }>
@@ -24,10 +32,10 @@ function SaleCard(props) {
       </button>
       <div>
         <p data-testid={ `customer_orders__element-order-date-${id}` }>
-          { date }
+          { formatDate(saleDate) }
         </p>
         <p data-testid={ `customer_orders__element-card-price-${id}` }>
-          { `R$ ${String(price.toFixed(2).replace('.', ','))}` }
+          { `R$ ${totalPrice.replace('.', ',')}` }
         </p>
       </div>
     </div>
@@ -37,8 +45,8 @@ function SaleCard(props) {
 SaleCard.propTypes = {
   id: PropTypes.number,
   status: PropTypes.string,
-  date: PropTypes.string,
-  price: PropTypes.number,
+  saleDate: PropTypes.string,
+  totalPrice: PropTypes.string,
 }.isRequired;
 
 export default SaleCard;
