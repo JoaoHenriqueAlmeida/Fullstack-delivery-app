@@ -1,8 +1,9 @@
 const { Op } = require('sequelize');
 const genericService = require('./basicService');
+const userService = require('./userService');
 const { Sales } = require('../database/models');
-const { SalesProducts } = require('../database/models');
 const { Users } = require('../database/models');
+const { SalesProducts } = require('../database/models');
 
 const formatSalesProductArray = (cart, sale) => {
   const salesProducts = cart.map((item) => ({
@@ -47,9 +48,10 @@ const readSaleByUsersInvolved = async (id) => {
   return sale;
 };
 
-const readSaleByUserId = async (id) => {
+const readSaleByUserId = async (token) => {
+  const results = await userService.auth(token);
   const sale = await Sales.findAll({
-    where: { userId: id },
+    where: { userId: results.id },
     include: [{ model: Users, as: 'user_sales' }],
   });
 
