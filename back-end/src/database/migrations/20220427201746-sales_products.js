@@ -2,26 +2,23 @@
 
 module.exports = {
    up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('sales_products', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
+    await queryInterface.createTable('salesProducts', {
       sale_id: {
         allowNull: false,
+        // field: 'sale_id',
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
           model: 'sales',
           key: 'id',
         },
+        foreignKey: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
       product_id: {
         allowNull: false,
+        // field: 'product_id',
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
@@ -29,6 +26,7 @@ module.exports = {
           key: 'id',
         },
         primaryKey: true,
+        foreignKey: true,
         type: Sequelize.INTEGER,
       },
       quantity: {
@@ -39,6 +37,6 @@ module.exports = {
   },
 
    down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('sales_products');
+    await queryInterface.dropTable('salesProducts');
   }
 };

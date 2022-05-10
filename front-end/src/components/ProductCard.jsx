@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import QuantityController from './QuantityController';
+import '../styles/productCard.css';
 
 function ProductCard(props) {
   const {
@@ -11,19 +12,21 @@ function ProductCard(props) {
   } = props;
 
   return (
-    <div key={ id }>
+    <div className="card" key={ id }>
       <h3
         data-testid={ `customer_products__element-card-price-${id}` }
       >
         {`R$ ${price.replace('.', ',')}`}
       </h3>
       <img
-        data-testid={ `customer_products__element-card-img-${id}` }
+        data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ urlImage }
         alt={ `${name}-thumbnail` }
       />
-      <h1 data-testid={ `customer_products__element-card-title-${id}` }>{name}</h1>
-      <QuantityController id={ id } />
+      <div className="card-info">
+        <h2 data-testid={ `customer_products__element-card-title-${id}` }>{name}</h2>
+        <QuantityController id={ id } />
+      </div>
     </div>
   );
 }

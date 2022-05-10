@@ -1,36 +1,47 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import '../styles/navbar.css';
 
 function Navbar(props) {
   const { username } = props;
   return (
     <nav>
-      <a
-        href="/customer/products"
-        data-testid="customer_products__element-navbar-link-products"
-      >
-        Produtos
-      </a>
+      <div className="nav-esquerda">
+        <Link
+          data-testid="customer_products__element-navbar-link-products"
+          className="link selected"
+          to="/customer/products"
+        >
+          Produtos
 
-      <a
-        href="/customer/orders"
-        data-testid="customer_products__element-navbar-link-orders"
-      >
-        Meus Pedidos
-      </a>
+        </Link>
+        <Link
+          data-testid="customer_products__element-navbar-link-orders"
+          className="link"
+          to="/customer/orders"
+        >
+          Meus Pedidos
 
-      <span
-        data-testid="customer_products__element-navbar-user-full-name"
-      >
-        { username }
-      </span>
+        </Link>
+      </div>
+      <div className="user-logout">
+        <span
+          data-testid="customer_products__element-navbar-user-full-name"
+        >
+          { username }
+        </span>
 
-      <a
-        href="/"
-        data-testid="customer_products__element-navbar-link-logout"
-      >
-        Sair
-      </a>
+        <Link
+          data-testid="customer_products__element-navbar-link-logout"
+          className="link logout"
+          to="/"
+          onClick={ () => localStorage.removeItem('user') }
+        >
+          Sair
+
+        </Link>
+      </div>
     </nav>
   );
 }
