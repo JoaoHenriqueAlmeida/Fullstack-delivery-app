@@ -63,11 +63,11 @@ const findUser = async (id) => genericService.readOne(Users, id);
 
 const updateUser = async (id, data) => genericService.update(Users, id, data);
 
-const deleteUser = async (id) => genericService.delete(Users, id);
+// const deleteUser = async (id) => genericService.delete(Users, id);
 
 module.exports = {
   auth,
-  deleteUser,
+  // deleteUser,
   findUsers,
   findUser,
   generateToken,
