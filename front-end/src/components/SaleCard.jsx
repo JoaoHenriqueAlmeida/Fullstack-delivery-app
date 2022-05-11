@@ -20,7 +20,7 @@ function SaleCard(props) {
     <div key={ id } style={ { display: 'flex', flexDirection: 'row' } }>
       <div>
         <p>Pedido</p>
-        <p data-testid={ `customer_orders__element-order-${id}` }>
+        <p data-testid={ `customer_orders__element-order-id-${id}` }>
           { formatNumber(id, FOUR) }
         </p>
       </div>
@@ -28,7 +28,7 @@ function SaleCard(props) {
         type="button"
         data-testid={ `customer_orders__element-delivery-status-${id}` }
       >
-        { status.toUpperCase() }
+        { status }
       </button>
       <div>
         <p data-testid={ `customer_orders__element-order-date-${id}` }>
