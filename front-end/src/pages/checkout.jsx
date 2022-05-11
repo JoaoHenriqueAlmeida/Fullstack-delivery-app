@@ -7,7 +7,7 @@ import { createSale } from '../utils/requests';
 import { MyContext } from '../context/Provider';
 
 function Checkout() {
-  const { cart, userId, token, username } = useContext(MyContext);
+  const { cart, userId, token, username, resetCart } = useContext(MyContext);
   const [address, setAddress] = useState('');
   const [addressNumber, setAddressNumber] = useState(Number());
   const [sellerId, setSellerId] = useState(2);
@@ -31,6 +31,7 @@ function Checkout() {
     const results = await createSale(token, newSale);
     if (results.id) {
       navigate(`/customer/orders/${results.id}`, { replace: true });
+      resetCart([]);
     }
   };
 

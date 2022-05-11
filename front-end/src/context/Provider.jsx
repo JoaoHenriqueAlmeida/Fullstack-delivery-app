@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { createContext, useState, useReducer } from 'react';
 import { shopReducer, ADD_PRODUCT,
-  REMOVE_PRODUCT, MANUAL_INPUT, REMOVE_ITEM } from './reducers';
+  REMOVE_PRODUCT, MANUAL_INPUT, REMOVE_ITEM, RESET_CART } from './reducers';
 
 export const MyContext = createContext();
 
@@ -44,6 +44,10 @@ export function Provider({ children }) {
     dispatch({ type: REMOVE_ITEM, productId });
   };
 
+  const resetCart = (initialState) => {
+    dispatch({ type: RESET_CART, initialState });
+  };
+
   const context = {
     userEmail,
     setUserEmail,
@@ -61,6 +65,7 @@ export function Provider({ children }) {
     removeProductFromCart,
     manualInput,
     removeItem,
+    resetCart,
   };
 
   return (
