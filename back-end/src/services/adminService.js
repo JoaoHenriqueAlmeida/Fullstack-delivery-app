@@ -4,7 +4,9 @@ const userService = require('./userService');
 const updateUserRole = async (id, data, token) => {
   const results = await userService.auth(token);
 
-  if (results.role !== 'administrator') throw new Error('Usuário não autorizado para essa operação');
+  if (results.role !== 'administrator') {
+    throw new Error('Usuário não autorizado para essa operação');
+  }
 
   const user = await Users.findByPk(id);
 
@@ -17,10 +19,12 @@ const updateUserRole = async (id, data, token) => {
   return user;
 };
 
-const deleteUser = async (id, role) => {
+const deleteUser = async (id, token) => {
   const results = await userService.auth(token);
 
-  if (results.role !== 'administrator') throw new Error('Usuário não autorizado para essa operação');
+  if (results.role !== 'administrator') {
+    throw new Error('Usuário não autorizado para essa operação');
+  }
 
   await Users.destroy({ where: { id } });
 };
