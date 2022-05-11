@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { MyContext } from '../context/Provider';
 import '../styles/navbar.css';
 
 function Navbar(props) {
   const { username } = props;
+  const { setLogged } = useContext(MyContext);
+
   return (
     <nav>
       <div className="nav-esquerda">
@@ -36,7 +39,10 @@ function Navbar(props) {
           data-testid="customer_products__element-navbar-link-logout"
           className="link logout"
           to="/"
-          onClick={ () => localStorage.removeItem('user') }
+          onClick={ () => {
+            localStorage.removeItem('user');
+            setLogged(false);
+          } }
         >
           Sair
 
