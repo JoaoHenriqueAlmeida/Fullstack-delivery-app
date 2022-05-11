@@ -11,6 +11,7 @@ export function Provider({ children }) {
   const [username, setUsername] = useState('');
   const [userId, setUserId] = useState(Number());
   const [token, setToken] = useState('');
+  const [logged, setLogged] = useState(false);
 
   const products = [
     { id: 1, title: 'Skol Lata 250ml', price: 2.20 },
@@ -66,6 +67,8 @@ export function Provider({ children }) {
     manualInput,
     removeItem,
     resetCart,
+    logged,
+    setLogged,
   };
 
   return (

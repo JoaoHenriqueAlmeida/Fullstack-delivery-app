@@ -8,9 +8,19 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [logged, setLogged] = useState(false);
   const [disabled, setDisabled] = useState(true);
+  const [userRole, setUserRole] = useState('customer');
   const navigate = useNavigate();
+
+  const {
+    setUserEmail,
+    setUserPassword,
+    setUsername,
+    setToken,
+    setUserId,
+    logged,
+    setLogged,
+  } = useContext(MyContext);
 
   useEffect(() => {
     const regex = (/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -23,13 +33,15 @@ function Login() {
     if (!emailValidation || !passwordValidation) setDisabled(true);
   }, [email, password]);
 
-  const {
-    setUserEmail,
-    setUserPassword,
-    setUsername,
-    setToken,
-    setUserId,
-  } = useContext(MyContext);
+  useEffect(() => {
+    const loggedUser = localStorage.getItem('user');
+    if (loggedUser) {
+      const parsedUser = JSON.parse(loggedUser);
+      setToken(parsedUser.token);
+      setUserRole(parsedUser.role);
+      setLogged(true);
+    }
+  }, [setLogged, setToken]);
 
   const validateUser = async () => {
     setError('');
@@ -51,7 +63,19 @@ function Login() {
     }
   };
 
-  if (logged) return <Navigate to="/customer/products" />;
+  const handleUserRole = (role) => {
+    const roles = {
+      customer: <Navigate to="/customer/products" />,
+      administrator: <Navigate to="/admin/manage" />,
+      seller: <Navigate to="/seller/orders" />,
+      default: <Navigate to="/customer/products" />,
+    };
+
+    return roles[role] || roles.default;
+  };
+
+  if (logged) return handleUserRole(userRole);
+
   return (
     <div className="div-login">
       <h1 className="logo">CETABOM ENTREGAS!</h1>
