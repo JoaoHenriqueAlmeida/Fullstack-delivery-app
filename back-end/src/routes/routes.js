@@ -34,4 +34,15 @@ router.put('/orders/:id', salesController.updateSaleStatus);
 // cria uma venda:
 router.post('/sales', salesController.create);
 
+// rotas relacionadas ao admin:
+
+// - cria um novo usuário:
+router.post('/admin', userController.register);
+
+// - edita um usuário (mudando a role dele):
+router.put('/admin/:id', userController.adminUpdateUser);
+
+// - deleta um usuário:
+router.delete('/admin/:id', userController.adminDeleteUser);
+
 module.exports = router;
