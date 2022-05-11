@@ -17,19 +17,19 @@ function SaleCard(props) {
   };
 
   return (
-    <div key={ id } style={ { display: 'flex', flexDirection: 'row' } }>
+    <div key={ id }>
       <div>
         <p>Pedido</p>
         <p data-testid={ `customer_orders__element-order-id-${id}` }>
           { formatNumber(id, FOUR) }
         </p>
       </div>
-      <button
+      <div
         type="button"
         data-testid={ `customer_orders__element-delivery-status-${id}` }
       >
         { status }
-      </button>
+      </div>
       <div>
         <p data-testid={ `customer_orders__element-order-date-${id}` }>
           { formatDate(saleDate) }
