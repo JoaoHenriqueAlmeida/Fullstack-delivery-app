@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { createContext, useState, useReducer } from 'react';
 import { shopReducer, ADD_PRODUCT,
-  REMOVE_PRODUCT, MANUAL_INPUT, REMOVE_ITEM } from './reducers';
+  REMOVE_PRODUCT, MANUAL_INPUT, REMOVE_ITEM, RESET_CART } from './reducers';
 
 export const MyContext = createContext();
 
@@ -11,6 +11,7 @@ export function Provider({ children }) {
   const [username, setUsername] = useState('');
   const [userId, setUserId] = useState(Number());
   const [token, setToken] = useState('');
+  const [logged, setLogged] = useState(false);
 
   const products = [
     { id: 1, title: 'Skol Lata 250ml', price: 2.20 },
@@ -44,6 +45,10 @@ export function Provider({ children }) {
     dispatch({ type: REMOVE_ITEM, productId });
   };
 
+  const resetCart = (initialState) => {
+    dispatch({ type: RESET_CART, initialState });
+  };
+
   const context = {
     userEmail,
     setUserEmail,
@@ -61,6 +66,9 @@ export function Provider({ children }) {
     removeProductFromCart,
     manualInput,
     removeItem,
+    resetCart,
+    logged,
+    setLogged,
   };
 
   return (
