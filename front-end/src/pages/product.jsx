@@ -40,7 +40,7 @@ function Product() {
         type="button"
         data-testid="customer_products__button-cart"
         className="button-carrinho"
-        disabled={ sumCart <= 0 }
+        disabled={ sumCart === '0,00' }
         onClick={ (() => navigate('/customer/checkout', { replace: true })) }
       >
         Ver Carrinho: R$
