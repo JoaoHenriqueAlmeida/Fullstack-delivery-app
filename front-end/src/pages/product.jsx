@@ -10,9 +10,11 @@ function Product() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const { username, token, cart } = useContext(MyContext);
-  const sumCart = cart
-    .reduce((acc, { price, quantity }) => acc + price * quantity, 0)
-    .toFixed(2);
+  const sumCart = cart.length
+    ? cart
+      .reduce((acc, { price, quantity }) => acc + price * quantity, 0)
+      .toFixed(2)
+    : '0,00';
 
   useEffect(() => {
     if (!localStorage.getItem('cart')) {

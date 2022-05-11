@@ -2,6 +2,7 @@ export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 export const MANUAL_INPUT = 'MANUAL_INPUT';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
+export const RESET_CART = 'RESET_CART';
 
 // https://codesandbox.io/s/nnwl26w86l?file=/src/context/reducers.js:627-667
 
@@ -62,6 +63,8 @@ const removeItem = (productId, state) => {
   return { ...state, cart: updatedCart };
 };
 
+const resetCart = (initialState, state) => ({ ...state, cart: initialState });
+
 export const shopReducer = (state, action) => {
   switch (action.type) {
   case ADD_PRODUCT:
@@ -72,6 +75,8 @@ export const shopReducer = (state, action) => {
     return manualInput(action.inputProduct, state);
   case REMOVE_ITEM:
     return removeItem(action.productId, state);
+  case RESET_CART:
+    return resetCart(action.initialState, state);
   default:
     return state;
   }
