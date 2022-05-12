@@ -8,6 +8,7 @@ import SaleRow from '../components/SaleRow';
 
 function Sale() {
   const [sale, setSale] = useState([]);
+  const [preparing, setPreparing] = useState(false);
   const { username, token } = useContext(MyContext);
   const { id } = useParams();
 
@@ -15,6 +16,7 @@ function Sale() {
     const fetchSale = async () => {
       const results = await getSale(id, token);
       setSale(results);
+      if (results[0].status === 'Pendente') setPreparing(true);
     };
     fetchSale();
   }, [id, token]);
@@ -23,7 +25,14 @@ function Sale() {
     <main>
       <Navbar username={ username } />
       <table>
-        { sale.length ? SellerHeader(sale[0]) : ''}
+        { sale.length ? <SellerHeader
+          preparing={ preparing }
+          setPreparing={ setPreparing }
+          id={ id }
+          saleDate={ sale[0].saleDate }
+          status={ sale[0].status }
+          token={ token }
+        /> : ''}
         <thead>
           <tr>
             <th>Item</th>

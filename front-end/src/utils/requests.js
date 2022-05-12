@@ -98,6 +98,21 @@ const sellerSales = async (token) => {
   return results;
 };
 
+const updateSale = async (id, token, status) => {
+  const reqHeaders = new Headers();
+  reqHeaders.append('Authorization', token);
+  reqHeaders.append(CONTENT_TYPE, CHARSET);
+  const options = {
+    method: 'PUT',
+    body: JSON.stringify(status),
+    headers: reqHeaders,
+  };
+  const results = await fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT || '3001'}/orders/${id}`, options)
+    .then((response) => response.json())
+    .then((data) => data);
+  return results;
+};
+
 export {
   requestUser,
   createUser,
@@ -106,4 +121,5 @@ export {
   requestSales,
   getSale,
   sellerSales,
+  updateSale,
 };

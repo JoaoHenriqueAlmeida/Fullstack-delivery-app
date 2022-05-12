@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { updateSale } from '../utils/requests';
 
 const prefix = 'seller_order_details__';
 const FOUR = 4;
@@ -9,6 +10,9 @@ function SellerHeader(props) {
     id,
     saleDate,
     status,
+    preparing,
+    setPreparing,
+    token,
   } = props;
 
   const formatNumber = (number, length) => String(number).padStart(length, '0');
@@ -43,6 +47,11 @@ function SellerHeader(props) {
           <button
             type="button"
             data-testid={ `${prefix}button-preparing-check` }
+            disabled={ preparing }
+            onClick={ async () => {
+              setPreparing(!preparing);
+              await updateSale(id, token, { status: 'Preparando' });
+            } }
           >
             PREPARAR PEDIDO
           </button>
@@ -51,7 +60,11 @@ function SellerHeader(props) {
           <button
             type="button"
             data-testid={ `${prefix}button-dispatch-check` }
-            disabled
+            disabled={ !preparing }
+            onClick={ async () => {
+              setPreparing(!preparing);
+              await updateSale(id, token, { status: 'Em Trânsito' });
+            } }
           >
             SAIU PARA ENTREGA
           </button>
@@ -65,6 +78,9 @@ SellerHeader.propTypes = {
   id: PropTypes.number,
   saleDate: PropTypes.string,
   status: PropTypes.string,
+  preparing: PropTypes.bool,
+  setPreparing: PropTypes.func,
+  token: PropTypes.string,
 }.isRequired;
 
 export default SellerHeader;
