@@ -21,16 +21,25 @@ function ProductRow(props, index) {
       >
         { title }
       </td>
-      <td data-testid={ `customer_checkout__element-order-table-quantity-${index}` }>
+      <td
+        data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+        className="quantity"
+      >
         { quantity }
       </td>
-      <td data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }>
+      <td
+        data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
+        className="unit-price"
+      >
         { String(price.toFixed(2)).replace('.', ',') }
       </td>
-      <td data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }>
+      <td
+        data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
+        className="sub-total"
+      >
         { String((quantity * price).toFixed(2)).replace('.', ',') }
       </td>
-      <td>
+      <td className="remove-button">
         <button
           data-testid={ `customer_checkout__element-order-table-remove-${index}` }
           type="button"

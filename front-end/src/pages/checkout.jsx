@@ -40,7 +40,7 @@ function Checkout() {
     <main>
       <Navbar username={ username } />
       <div className="vitrine-checkout">
-        <h2>Finalizar Pedido</h2>
+        <h2 className="title">Finalizar Pedido</h2>
         <div className="finalizar-pedido">
           <table className="table">
             <thead>
@@ -61,22 +61,27 @@ function Checkout() {
           <button
             type="button"
             data-testid="customer_checkout__element-order-total-price"
+            className="total-price"
           >
             { `Total: R$ ${String(sumCart).replace('.', ',')}` }
           </button>
         </div>
-        <DeliveryDetails
-          setAddress={ setAddress }
-          setAddressNumber={ setAddressNumber }
-          setSellerId={ setSellerId }
-        />
-        <button
-          type="button"
-          data-testid="customer_checkout__button-submit-order"
-          onClick={ () => submitSale() }
-        >
-          Finalizar Pedido
-        </button>
+          <h2 className="title">Detalhes e Endereco para Entrega</h2>
+        <div className="detalhes-entrega">
+          <DeliveryDetails
+            setAddress={ setAddress }
+            setAddressNumber={ setAddressNumber }
+            setSellerId={ setSellerId }
+          />
+          <button
+            type="button"
+            data-testid="customer_checkout__button-submit-order"
+            className="finalize-button"
+            onClick={ () => submitSale() }
+          >
+            FINALIZAR PEDIDO
+          </button>
+        </div>
       </div>
     </main>
   );
