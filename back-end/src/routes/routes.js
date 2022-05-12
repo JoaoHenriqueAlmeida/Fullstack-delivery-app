@@ -23,7 +23,7 @@ router.get('/products/:id', productsController.readOne);
 router.get('/orders', salesController.readSaleByUserId);
 
 // pega um pedido pela id de vendedor:
-router.get('/orders/seller/:id', salesController.readSaleBySellerId);
+router.get('/orders/seller', salesController.readSaleBySellerId);
 
 // pega os detalhes de uma venda: 
 router.get('/orders/:id', salesProductsController.saleProductsById);
