@@ -1,0 +1,147 @@
+.vitrine-checkout {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2%;
+}
+
+.title {
+  align-self: start;
+  margin-left: 5%;
+}
+
+.finalizar-pedido {
+  align-items: flex-end;
+  background: #fbfffe;
+  border: 1px solid #c1c2be;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5rem;
+  padding: 15px;
+  width: 90%;
+}
+
+.table {
+  border-spacing: 0 10px;
+  width: 100%;
+}
+
+.table thead th {
+  color: var(--text-dark);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+
+.table tbody {
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.item {
+  background-color: #2fc18c;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.description {
+  background-color: #eaf1ef;
+  text-indent: 20px;
+}
+
+.quantity {
+  background-color: var(--primary-color);
+  color: #f2fffc;
+  font-size: 36px;
+  text-align: center;
+}
+
+.unit-price {
+  background-color: var(--terciary-color);
+  color: #f2fffc;
+  font-size: 36px;
+  text-align: center;
+}
+
+.sub-total {
+  background-color: var(--quaternary-color);
+  color: #f2fffc;
+  font-size: 36px;
+  text-align: center;
+}
+
+.remove-button {
+  background-color: var(--secondary-color);
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #f2fffc;
+  font-size: 36px;
+}
+
+.remove-button button {
+  width: 100%;
+}
+
+.total-price {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  color: var(--text-light);
+  font-size: 64px;
+  font-weight: 500;
+  padding: 10px 50px;
+}
+
+.finalize-button {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  color: var(--text-light);
+  font-size: 36px;
+  font-weight: 700;
+  margin: 20px;
+  padding: 20px 80px;
+}
+
+.detalhes-entrega {
+  align-items: center;
+  background: #fbfffe;
+  border: 1px solid #c1c2be;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10%;
+  overflow: auto;
+  padding: 10px;
+  width: 90%;
+}
+
+.detalhes-entrega input, select {
+  background: white;
+  border: 1px solid #001813;
+  border-radius: 5px;
+  font-size: 24px;
+  height: 70px;
+  padding: 0 20px;
+
+  /* width: 359px; */
+}
+
+.input-endereco {
+  width: 778px;
+}
+
+.detalhes-entrega thead th {
+  color: var(--text-dark);
+  font-size: 24px;
+  font-weight: 400;
+  text-align: start;
+  text-indent: 10px;
+}
+
+.detalhes-entrega table {
+  border-spacing: 20px 10px;
+}
+

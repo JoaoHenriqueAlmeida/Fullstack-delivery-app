@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { MyContext } from '../context/Provider';
+import '../styles/checkout.css';
 
 function ProductRow(props, index) {
   const { removeItem } = useContext(MyContext);
@@ -8,22 +9,37 @@ function ProductRow(props, index) {
 
   return (
     <tr key={ id }>
-      <td data-testid={ `customer_checkout__element-order-table-item-number-${index}` }>
+      <td
+        data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
+        className="item"
+      >
         { index + 1 }
       </td>
-      <td data-testid={ `customer_checkout__element-order-table-name-${index}` }>
+      <td
+        data-testid={ `customer_checkout__element-order-table-name-${index}` }
+        className="description"
+      >
         { title }
       </td>
-      <td data-testid={ `customer_checkout__element-order-table-quantity-${index}` }>
+      <td
+        data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+        className="quantity"
+      >
         { quantity }
       </td>
-      <td data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }>
+      <td
+        data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
+        className="unit-price"
+      >
         { String(price.toFixed(2)).replace('.', ',') }
       </td>
-      <td data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }>
+      <td
+        data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
+        className="sub-total"
+      >
         { String((quantity * price).toFixed(2)).replace('.', ',') }
       </td>
-      <td>
+      <td className="remove-button">
         <button
           data-testid={ `customer_checkout__element-order-table-remove-${index}` }
           type="button"

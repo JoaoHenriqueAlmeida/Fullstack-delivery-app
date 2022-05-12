@@ -23,6 +23,7 @@ function DeliveryDetails(props) {
             <input
               data-testid="customer_checkout__input-address"
               type="text"
+              className="input-endereco"
               placeholder="Logradouro"
               onChange={ ({ target }) => setAddress(target.value) }
             />

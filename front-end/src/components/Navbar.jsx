@@ -8,6 +8,11 @@ function Navbar(props) {
   const { username } = props;
   const { setLogged } = useContext(MyContext);
 
+  // const handleChange = (number) => {
+  //   setSelected(number);
+  //   navigate(`/customer/orders/${sale.id}`, { replace: true });
+  // };
+
   return (
     <nav>
       <div className="nav-esquerda">

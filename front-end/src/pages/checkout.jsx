@@ -5,6 +5,8 @@ import ProductRow from '../components/ProductRow';
 import DeliveryDetails from '../components/DeliveryDetails';
 import { createSale } from '../utils/requests';
 import { MyContext } from '../context/Provider';
+import '../styles/checkout.css';
+import ProductColumn from '../components/ProductColumn';
 
 function Checkout() {
   const { cart, userId, token, username, resetCart } = useContext(MyContext);
@@ -38,41 +40,41 @@ function Checkout() {
   return (
     <main>
       <Navbar username={ username } />
-      <h2>Finalizar Pedido</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Descrição</th>
-            <th>Quantidade</th>
-            <th>Valor Unitário</th>
-            <th>Sub-total</th>
-            <th>Remover Item</th>
-          </tr>
-        </thead>
-        <tbody>
-          { cart
-            .map((e, index) => ProductRow(e, index)) }
-        </tbody>
-      </table>
-      <button
-        type="button"
-        data-testid="customer_checkout__element-order-total-price"
-      >
-        { `Total: R$ ${String(sumCart).replace('.', ',')}` }
-      </button>
-      <DeliveryDetails
-        setAddress={ setAddress }
-        setAddressNumber={ setAddressNumber }
-        setSellerId={ setSellerId }
-      />
-      <button
-        type="button"
-        data-testid="customer_checkout__button-submit-order"
-        onClick={ () => submitSale() }
-      >
-        Finalizar Pedido
-      </button>
+      <div className="vitrine-checkout">
+        <h2 className="title">Finalizar Pedido</h2>
+        <div className="finalizar-pedido">
+          <table className="table">
+            <ProductColumn />
+            <tbody>
+              { cart
+                .map((e, index) => ProductRow(e, index)) }
+            </tbody>
+          </table>
+          <button
+            type="button"
+            data-testid="customer_checkout__element-order-total-price"
+            className="total-price"
+          >
+            { `Total: R$ ${String(sumCart).replace('.', ',')}` }
+          </button>
+        </div>
+        <h2 className="title">Detalhes e Endereco para Entrega</h2>
+        <div className="detalhes-entrega">
+          <DeliveryDetails
+            setAddress={ setAddress }
+            setAddressNumber={ setAddressNumber }
+            setSellerId={ setSellerId }
+          />
+          <button
+            type="button"
+            data-testid="customer_checkout__button-submit-order"
+            className="finalize-button"
+            onClick={ () => submitSale() }
+          >
+            FINALIZAR PEDIDO
+          </button>
+        </div>
+      </div>
     </main>
   );
 }
