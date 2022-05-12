@@ -12,6 +12,7 @@ import Product from '../pages/product';
 import Register from '../pages/register';
 import Details from '../pages/details';
 import Sellings from '../pages/sellings';
+import Sale from '../pages/sale';
 
 export default function Switch() {
   return (
@@ -24,6 +25,7 @@ export default function Switch() {
         <Route path="/customer/checkout" element={ <Checkout /> } />
         <Route path="/customer/orders/:id" element={ <Details /> } />
         <Route path="/customer/orders/" element={ <Orders /> } />
+        <Route path="/seller/orders/:id" element={ <Sale /> } />
         <Route path="/seller/orders" element={ <Sellings /> } />
       </Routes>
     </BrowserRouter>
