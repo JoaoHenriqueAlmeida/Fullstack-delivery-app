@@ -21,7 +21,7 @@ function QuantityController(props) {
   }, [quantity]);
 
   return (
-    <div>
+    <div className="quantity-controller">
       <button
         type="button"
         aria-label="subtract-product"

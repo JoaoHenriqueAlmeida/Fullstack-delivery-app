@@ -18,7 +18,7 @@ function Navbar(props) {
       <div className="nav-esquerda">
         <Link
           data-testid="customer_products__element-navbar-link-products"
-          className="link"
+          className="link selected"
           to="/customer/products"
         >
           Produtos
