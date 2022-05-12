@@ -13,6 +13,8 @@ function SellerHeader(props) {
     preparing,
     setPreparing,
     token,
+    inTransit,
+    setInTransit,
   } = props;
 
   const formatNumber = (number, length) => String(number).padStart(length, '0');
@@ -23,6 +25,11 @@ function SellerHeader(props) {
     const year = date.getFullYear();
 
     return `${day}/${month}/${year}`;
+  };
+
+  const enableButton = () => {
+    if (inTransit) return true;
+    if (!preparing && !inTransit) return true;
   };
 
   return (
@@ -60,9 +67,9 @@ function SellerHeader(props) {
           <button
             type="button"
             data-testid={ `${prefix}button-dispatch-check` }
-            disabled={ !preparing }
+            disabled={ enableButton() }
             onClick={ async () => {
-              setPreparing(!preparing);
+              setInTransit(!inTransit);
               await updateSale(id, token, { status: 'Em Trânsito' });
             } }
           >
@@ -80,6 +87,8 @@ SellerHeader.propTypes = {
   status: PropTypes.string,
   preparing: PropTypes.bool,
   setPreparing: PropTypes.func,
+  inTransit: PropTypes.bool,
+  setInTransit: PropTypes.func,
   token: PropTypes.string,
 }.isRequired;
 
