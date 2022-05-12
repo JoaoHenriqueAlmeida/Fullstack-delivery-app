@@ -38,7 +38,8 @@ const readSaleByUserId = async (req, res) => {
 
 const readSaleBySellerId = async (req, res) => {
   try {
-    const sale = await salesService.readSaleBySellerId(req.params.id);
+    const { authorization } = req.headers;
+    const sale = await salesService.readSaleBySellerId(authorization);
     return res.status(200).json(sale);
   } catch (e) {
     return res.status(400).json({ message: e.message });

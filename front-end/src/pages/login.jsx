@@ -52,6 +52,7 @@ function Login() {
       setUsername(user.name);
       setToken(user.token);
       setUserId(user.id);
+      setUserRole(user.role);
       const userToSave = JSON
         .stringify({
           name: user.name, email: user.email, role: user.role, token: user.token,
