@@ -9,6 +9,7 @@ import SaleRow from '../components/SaleRow';
 function Sale() {
   const [sale, setSale] = useState([]);
   const [preparing, setPreparing] = useState(false);
+  const [inTransit, setInTransit] = useState(false);
   const { username, token } = useContext(MyContext);
   const { id } = useParams();
 
@@ -16,7 +17,8 @@ function Sale() {
     const fetchSale = async () => {
       const results = await getSale(id, token);
       setSale(results);
-      if (results[0].status === 'Pendente') setPreparing(true);
+      if (results[0].status === 'Preparando') setPreparing(true);
+      if (results[0].status === 'Em Trânsito') setInTransit(true);
     };
     fetchSale();
   }, [id, token]);
@@ -28,6 +30,8 @@ function Sale() {
         { sale.length ? <SellerHeader
           preparing={ preparing }
           setPreparing={ setPreparing }
+          inTransit={ inTransit }
+          setInTransit={ setInTransit }
           id={ id }
           saleDate={ sale[0].saleDate }
           status={ sale[0].status }
