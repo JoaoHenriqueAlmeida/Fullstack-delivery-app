@@ -6,6 +6,7 @@ import DeliveryDetails from '../components/DeliveryDetails';
 import { createSale } from '../utils/requests';
 import { MyContext } from '../context/Provider';
 import '../styles/checkout.css';
+import ProductColumn from '../components/ProductColumn';
 
 function Checkout() {
   const { cart, userId, token, username, resetCart } = useContext(MyContext);
@@ -43,16 +44,7 @@ function Checkout() {
         <h2 className="title">Finalizar Pedido</h2>
         <div className="finalizar-pedido">
           <table className="table">
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Descrição</th>
-                <th>Quantidade</th>
-                <th>Valor Unitário</th>
-                <th>Sub-total</th>
-                <th>Remover Item</th>
-              </tr>
-            </thead>
+            <ProductColumn />
             <tbody>
               { cart
                 .map((e, index) => ProductRow(e, index)) }
@@ -66,7 +58,7 @@ function Checkout() {
             { `Total: R$ ${String(sumCart).replace('.', ',')}` }
           </button>
         </div>
-          <h2 className="title">Detalhes e Endereco para Entrega</h2>
+        <h2 className="title">Detalhes e Endereco para Entrega</h2>
         <div className="detalhes-entrega">
           <DeliveryDetails
             setAddress={ setAddress }
